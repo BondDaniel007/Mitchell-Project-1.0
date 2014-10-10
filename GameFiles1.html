@@ -14,8 +14,12 @@
 		var player = { x: 400, y: 300, w: 20, h: 20, dx: 5, dy: 5 };
 		
 		var left = false, right = false, up = false, down = false;			
-		var box1 = { x: 100, y: 100, w: 50,  h: 50 }
+		var box1 = { x: 100, y: 0,   w: 50,  h: 500 };
 		var box2 = { x: 500, y: 300, w: 100, h: 75 };
+		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
+		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
+		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
+		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		
 		function update() {
 			var orig = { x: player.x, y: player.y };
@@ -31,7 +35,7 @@
 				player.x += player.dx;
 			
 			//check if the player ran into a box and, if so, move back
-			if ( collide(player, box1) || collide(player, box2) )  {
+			if ( collide(player, box1) || collide(player, box2) || collide(player, box3))  {
 				player.x = orig.x;
 				player.y = orig.y; }
 			
@@ -47,13 +51,13 @@
 		}
 		
 		function collide( player, box ) {
-			if( player.x > box.x + box.w )
+			if( player.x >= box.x + box.w )
 				return false;
-			if ( player.y > box.y + box.h )
+			if ( player.y >= box.y + box.h )
 				return false;
-			if ( box.x > player.x + player.w )
+			if ( box.x >= player.x + player.w )
 				return false;
-			if ( box.y > player.y + player.h )
+			if ( box.y >= player.y + player.h )
 				return false;
 			
 			return true;
@@ -61,11 +65,24 @@
 		
 		function draw(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			
+			var BGI = new Image();
+			BGI.onload = function() {
+				var pattern = ctx.createPattern(BGI, 'repeat');
+			
+				ctx.rect(0, 0, 800, 600);
+				ctx.fillStyle = pattern;
+				ctx.fill();
+			}
+			BGI.src = 'BGI.jpg';
 			ctx.fillStyle = "#FF00FF";
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 			ctx.fillStyle = "#000000";
 			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
+			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
+		
+			
 		}
 			
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
