@@ -96,6 +96,7 @@
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 		}
 			
+		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
 		
 		function handleKeyDown(evt) {
@@ -106,6 +107,14 @@
 			if ( evt.keyCode == KEY_LEFT )
 				left = true;
 			if ( evt.keyCode == KEY_RIGHT )
+				right = true;
+			if ( evt.keyCode == KEY_UPw )
+				up = true;
+			if ( evt.keyCode == KEY_DOWNs )
+				down = true;
+			if ( evt.keyCode == KEY_LEFTa )
+				left = true;
+			if ( evt.keyCode == KEY_RIGHTd )
 				right = true;
 			
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
@@ -120,6 +129,14 @@
 			if ( evt.keyCode == KEY_LEFT )
 				left = false;
 			if ( evt.keyCode == KEY_RIGHT )
+				right = false;
+			if ( evt.keyCode == KEY_UPw )
+				up = false;
+			if ( evt.keyCode == KEY_DOWNs )
+				down = false;
+			if ( evt.keyCode == KEY_LEFTa )
+				left = false;
+			if ( evt.keyCode == KEY_RIGHTd )
 				right = false;
 			
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
