@@ -11,8 +11,10 @@
 	<canvas id='canvas' width='800' height='600'></canvas>
 	<script type='text/javascript'>
 		var ctx;
-		var player = { x: 400, y: 300, w: 20, h: 20, dx: 5, dy: 5 };
 		var pattern;
+
+		var player = { x: 400, y: 300, w: 50, h: 50, dx: 5, dy: 5 };
+
 		
 		var left = false, right = false, up = false, down = false;			
 		var box1 = { x: 100, y: 0,   w: 50,  h: 500 };
@@ -21,6 +23,13 @@
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
+
+		player.img = new Image();
+		player.ready = false;
+		player.img.onload = function() {
+			player.ready = true;
+		}
+		player.img.src = "Player.jpg";
 		
 		function update() {
 			var orig = { x: player.x, y: player.y };
@@ -67,12 +76,20 @@
 		function draw(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			
+
 			ctx.rect(0, 0, 800, 600);
 			ctx.fillStyle = pattern;
 			ctx.fill();
 
 			ctx.fillStyle = "#FF00FF";
 			ctx.fillRect(player.x, player.y, player.w, player.h);
+
+			
+			//ctx.fillStyle = "#FF00FF";
+			//ctx.fillRect(player.x, player.y, player.w, player.h);
+			if ( player.ready )
+				ctx.drawImage(player.img, player.x, player.y );
+
 			ctx.fillStyle = "#000000";
 			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
