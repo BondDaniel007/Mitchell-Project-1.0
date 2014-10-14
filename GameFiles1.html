@@ -72,6 +72,8 @@
 			
 			return true;
 		}
+
+// Draws the character as well as the obsticals on the map
 		
 		function draw(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
@@ -95,7 +97,9 @@
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 		}
-			
+		
+// Key board. Allows player to move character with the WASD keys as well as the arrow keys.
+		
 		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
 		
@@ -142,6 +146,8 @@
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
 				evt.preventDefault();
 			}
+
+// This makes the background be the actuall background
 			
 		function main() {
 			ctx = document.getElementById('canvas').getContext("2d");
