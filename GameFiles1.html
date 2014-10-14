@@ -12,6 +12,7 @@
 	<script type='text/javascript'>
 		var ctx;
 		var player = { x: 400, y: 300, w: 20, h: 20, dx: 5, dy: 5 };
+		var pattern;
 		
 		var left = false, right = false, up = false, down = false;			
 		var box1 = { x: 100, y: 0,   w: 50,  h: 500 };
@@ -66,23 +67,16 @@
 		function draw(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			
-			var BGI = new Image();
-			BGI.onload = function() {
-				var pattern = ctx.createPattern(BGI, 'repeat');
-			
-				ctx.rect(0, 0, 800, 600);
-				ctx.fillStyle = pattern;
-				ctx.fill();
-			}
-			BGI.src = 'BGI.jpg';
+			ctx.rect(0, 0, 800, 600);
+			ctx.fillStyle = pattern;
+			ctx.fill();
+
 			ctx.fillStyle = "#FF00FF";
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 			ctx.fillStyle = "#000000";
 			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
-		
-			
 		}
 			
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
@@ -119,6 +113,11 @@
 			ctx = document.getElementById('canvas').getContext("2d");
 			document.addEventListener('keydown', handleKeyDown);
 			document.addEventListener('keyup', handleKeyUp);
+			var BGI = new Image();
+			BGI.onload = function() {
+				pattern = ctx.createPattern(BGI, 'repeat');
+			}
+			BGI.src = 'BGI.jpg';
 			setInterval(function() { update(); draw(ctx); }, 1000/60);
 		}
 	
