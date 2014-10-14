@@ -18,11 +18,9 @@
 		
 		var left = false, right = false, up = false, down = false;			
 		var box1 = { x: 100, y: 0,   w: 50,  h: 450 };
-		var box2 = { x: 500, y: 300, w: 100, h: 75 };
+		var box2 = { x: 500, y: 0,   w: 100, h: 375 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
-		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
-		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
-		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
+		var box4 = { x: 150, y: 60,  w: 250, h: 50 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -96,6 +94,7 @@
 			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
+			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
 		}
 		
 // Key board. Allows player to move character with the WASD keys as well as the arrow keys.
