@@ -12,15 +12,20 @@
 	<script type='text/javascript'>
 		var ctx;
 		var pattern;
+		var timerID = -1;
+		var mouse = { x: 0, y: 0, clicked: false };
+		var playButton = {};
 
 		var player = { x: 400, y: 300, w: 50, h: 50, dx: 5, dy: 5 };
 
+		var MENU = 0, PLAY = 1;
+		var state = MENU;
 		
 		var left = false, right = false, up = false, down = false;			
 		var box1 = { x: 100, y: 0,   w: 50,  h: 450 };
 		var box2 = { x: 500, y: 0,   w: 100, h: 375 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
-		var box4 = { x: 150, y: 60,  w: 250, h: 50 };
+		var box4 = { x: 150, y: 60,  w: 250, h: 50};
 
 		player.img = new Image();
 		player.ready = false;
@@ -29,6 +34,38 @@
 		}
 		player.img.src = "Player.jpg";
 		
+		function contains( r, m ) {
+			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
+		}
+		
+		function getClick(e) {
+			var evt = e || window.event;
+			mouse.x = evt.pageX - ctx.canvas.offsetLeft;
+			mouse.y = evt.pageY - ctx.canvas.offsetTop;
+			mouse.clicked = true;
+		}
+		function init()
+		{
+			ctx.font = "24pt Arial, sans-serif";
+			ctx.textBaseline = "top";
+			playButton.x = ctx.canvas.width/2 - 100;
+			playButton.y = ctx.canvas.height/2 - 50;
+			playButton.w = 200;
+			playButton.h = 100;
+		}
+		// changes game state when clicked
+		function changeState( newState ) {
+			if ( timerID != -1 )
+				clearInterval(timerID);
+			if ( newState === MENU )
+				timerID = setInterval(function() { updateMenu(); drawMenu(ctx); }, 1000/60);
+			else if ( newState === PLAY ) {
+				//reset();
+				timerID = setInterval(function() { update(); drawPlay(ctx); }, 1000/60);
+			}
+			state = newState;
+		}
+			
 		function update() {
 			var orig = { x: player.x, y: player.y };
 			
@@ -58,6 +95,18 @@
 				player.y = ctx.canvas.height - player.h;
 		}
 		
+		function updateMenu() {
+		if ( mouse.clicked && contains(playButton, mouse) === true ) {
+				changeState(PLAY);
+			}
+			mouse.clicked = false;
+		}
+		
+		function drawMenu(ctx) {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
+			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
+		}
 		function collide( player, box ) {
 			if( player.x >= box.x + box.w )
 				return false;
@@ -73,7 +122,7 @@
 
 // Draws the character as well as the obsticals on the map
 		
-		function draw(ctx) {
+		function drawPlay(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			
 
@@ -152,12 +201,17 @@
 			ctx = document.getElementById('canvas').getContext("2d");
 			document.addEventListener('keydown', handleKeyDown);
 			document.addEventListener('keyup', handleKeyUp);
+			document.addEventListener('click', getClick);
+			document.addEventListener('drag', getClick);
+			
 			var BGI = new Image();
 			BGI.onload = function() {
 				pattern = ctx.createPattern(BGI, 'repeat');
 			}
 			BGI.src = 'BGI.jpg';
-			setInterval(function() { update(); draw(ctx); }, 1000/60);
+			init();
+			changeState(MENU);
+			//setInterval(function() { update(); draw(ctx); }, 1000/60);
 		}
 	
 		main();
