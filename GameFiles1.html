@@ -16,7 +16,7 @@
 		var mouse = { x: 0, y: 0, clicked: false };
 		var playButton = {};
 
-		var player = { x: 400, y: 300, w: 50, h: 50, dx: 5, dy: 5 };
+		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
 
 		var MENU = 0, PLAY = 1;
 		var state = MENU;
@@ -80,7 +80,7 @@
 				player.x += player.dx;
 			
 			//check if the player ran into a box and, if so, move back
-			if ( collide(player, box1) || collide(player, box2) || collide(player, box3))  {
+			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
 				player.x = orig.x;
 				player.y = orig.y; }
 			
