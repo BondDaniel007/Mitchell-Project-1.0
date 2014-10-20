@@ -129,11 +129,11 @@
 // Draws the character as well as the obsticals on the map
 		
 		function drawPlay(ctx) {
+			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
+			
 			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
 			ctx.fillText("[MENU]", menuButton.x+5, menuButton.y+2);
-		
-			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-
+			
 			ctx.rect(0, 0, 800, 600);
 			ctx.fillStyle = pattern;
 			ctx.fill();
