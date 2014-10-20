@@ -135,11 +135,6 @@
 			ctx.fillStyle = pattern;
 			ctx.fill();
 			
-			ctx.fillStyle = "#FF00FF";
-			ctx.font = "12pt Arial, sans-serif";
-			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
-			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
-			
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
 			//ctx.fillStyle = "#FF00FF";
@@ -152,6 +147,10 @@
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
+			
+			ctx.font = "12pt Arial, sans-serif";
+			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
+			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
 			
 			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
 				changeState(MENU);
