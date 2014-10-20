@@ -16,6 +16,7 @@
 		var mouse = { x: 0, y: 0, clicked: false };
 		var playButton = {};
 		var menuButton = {};
+		var orig = { x: 0, y: 0 };
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
 
@@ -47,15 +48,16 @@
 		}
 		function init()
 		{
+			ctx.font = "24pt Arial, sans-serif";
 			ctx.textBaseline = "top";
 			playButton.x = ctx.canvas.width/2 - 100;
 			playButton.y = ctx.canvas.height/2 - 50;
 			playButton.w = 200;
 			playButton.h = 100;
 			
-			menuButton.x = ctx.canvas.width - 65;
-			menuButton.y = ctx.canvas.height - 30;
-			menuButton.w = 60;
+			menuButton.x = ctx.canvas.width - 5;
+			menuButton.y = ctx.canvas.height - 5;
+			menuButton.w = 50;
 			menuButton.h = 25;
 		}
 		// changes game state when clicked
@@ -72,7 +74,8 @@
 		}
 			
 		function update() {
-			var orig = { x: player.x, y: player.y };
+			orig.x = player.x;
+			orig.y = player.y;
 			
 			// move the player
 			if ( up == true )
@@ -101,14 +104,13 @@
 		}
 		
 		function updateMenu() {
-			if ( mouse.clicked && contains(playButton, mouse) === true ) {
+		if ( mouse.clicked && contains(playButton, mouse) === true ) {
 				changeState(PLAY);
 			}
 			mouse.clicked = false;
 		}
 		
 		function drawMenu(ctx) {
-			ctx.font = "24pt Arial, sans-serif";
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
 			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
@@ -129,12 +131,16 @@
 // Draws the character as well as the obsticals on the map
 		
 		function drawPlay(ctx) {
+			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
+			ctx.fillText("[MENU]", menuButton.x+5, menuButton.y+2);
+		
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			
+
 			ctx.rect(0, 0, 800, 600);
 			ctx.fillStyle = pattern;
 			ctx.fill();
-			
+
+			ctx.fillStyle = "#FF00FF";
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
 			//ctx.fillStyle = "#FF00FF";
@@ -147,15 +153,6 @@
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
-			
-			ctx.font = "12pt Arial, sans-serif";
-			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
-			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
-			
-			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
-				changeState(MENU);
-			}
-			mouse.clicked = false;
 		}
 		
 // Keyboard. Allows player to move character with the WASD keys as well as the arrow keys.
