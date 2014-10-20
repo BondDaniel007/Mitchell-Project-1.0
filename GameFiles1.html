@@ -54,9 +54,9 @@
 			playButton.w = 200;
 			playButton.h = 100;
 			
-			menuButton.x = ctx.canvas.width - 5;
-			menuButton.y = ctx.canvas.height - 5;
-			menuButton.w = 50;
+			menuButton.x = ctx.canvas.width - 65;
+			menuButton.y = ctx.canvas.height - 30;
+			menuButton.w = 60;
 			menuButton.h = 25;
 		}
 		// changes game state when clicked
@@ -131,14 +131,15 @@
 		function drawPlay(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			
-			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
-			ctx.fillText("[MENU]", menuButton.x+5, menuButton.y+2);
-			
 			ctx.rect(0, 0, 800, 600);
 			ctx.fillStyle = pattern;
 			ctx.fill();
-
+			
 			ctx.fillStyle = "#FF00FF";
+			ctx.font = "12pt Arial, sans-serif";
+			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
+			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
+			
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
 			//ctx.fillStyle = "#FF00FF";
