@@ -15,6 +15,7 @@
 		var timerID = -1;
 		var mouse = { x: 0, y: 0, clicked: false };
 		var playButton = {};
+		var menuButton = {};
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
 
@@ -52,6 +53,11 @@
 			playButton.y = ctx.canvas.height/2 - 50;
 			playButton.w = 200;
 			playButton.h = 100;
+			
+			menuButton.x = ctx.canvas.width - 5;
+			menuButton.y = ctx.canvas.height - 5;
+			menuButton.w = 50;
+			menuButton.h = 25;
 		}
 		// changes game state when clicked
 		function changeState( newState ) {
@@ -123,8 +129,10 @@
 // Draws the character as well as the obsticals on the map
 		
 		function drawPlay(ctx) {
+			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
+			ctx.fillText("[MENU]", menuButton.x+5, menuButton.y+2);
+		
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			
 
 			ctx.rect(0, 0, 800, 600);
 			ctx.fillStyle = pattern;
@@ -133,7 +141,6 @@
 			ctx.fillStyle = "#FF00FF";
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
-			
 			//ctx.fillStyle = "#FF00FF";
 			//ctx.fillRect(player.x, player.y, player.w, player.h);
 			if ( player.ready )
