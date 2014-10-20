@@ -47,7 +47,6 @@
 		}
 		function init()
 		{
-			ctx.font = "24pt Arial, sans-serif";
 			ctx.textBaseline = "top";
 			playButton.x = ctx.canvas.width/2 - 100;
 			playButton.y = ctx.canvas.height/2 - 50;
@@ -102,13 +101,14 @@
 		}
 		
 		function updateMenu() {
-		if ( mouse.clicked && contains(playButton, mouse) === true ) {
+			if ( mouse.clicked && contains(playButton, mouse) === true ) {
 				changeState(PLAY);
 			}
 			mouse.clicked = false;
 		}
 		
 		function drawMenu(ctx) {
+			ctx.font = "24pt Arial, sans-serif";
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
 			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
@@ -152,6 +152,11 @@
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
+			
+			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
+				changeState(MENU);
+			}
+			mouse.clicked = false;
 		}
 		
 // Keyboard. Allows player to move character with the WASD keys as well as the arrow keys.
