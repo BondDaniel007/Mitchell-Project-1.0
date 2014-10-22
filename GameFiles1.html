@@ -102,14 +102,13 @@
 		}
 		
 		function updateMenu() {
-			if ( mouse.clicked && contains(playButton, mouse) === true ) {
+		if ( mouse.clicked && contains(playButton, mouse) === true ) {
 				changeState(PLAY);
 			}
 			mouse.clicked = false;
 		}
 		
 		function drawMenu(ctx) {
-			ctx.font = "24pt Arial, sans-serif";
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
 			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
@@ -140,11 +139,6 @@
 			ctx.font = "12pt Arial, sans-serif";
 			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
 			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
-			
-			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
-				changeState(MENU);
-			}
-			mouse.clicked = false;
 			
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
