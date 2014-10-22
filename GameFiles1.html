@@ -17,6 +17,8 @@
 		var playButton = {};
 		var menuButton = {};
 		var storyButton = {};
+		var currentSlide = 1;
+		var nextSlideButton = {};
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
 
@@ -42,6 +44,13 @@
 			storyBoard1.ready = true;
 		}
 		storyBoard1.src = "MitchellSlide1.jpg";
+		
+		var storyBoard2 = new Image();
+		storyBoard2.ready = false;
+		storyBoard2.onload = function() {
+			storyBoard2.ready = true;
+		}
+		storyBoard2.src = "MitchellSlide2.jpg";
 		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
@@ -71,6 +80,11 @@
 			storyButton.y = ctx.canvas.height/2;
 			storyButton.w = 200;
 			storyButton.h = 100;
+			
+			nextSlideButton.x = 645
+			nextSlideButton.y = 0
+			nextSlideButton.w = 100;
+			nextSlideButton.h = 100;
 		}
 		// changes game state when clicked
 		function changeState( newState ) {
@@ -183,9 +197,16 @@
 // Draws the plot screens.
 		
 		function drawPlot(ctx) {
-			if ( storyBoard1.ready )
-				ctx.drawImage(storyBoard1, 0, 0);
+			if (currentSlide === 1) {	
+				if ( storyBoard1.ready )
+					ctx.drawImage(storyBoard1, 0, 0);
+					
+				ctx.strokeRect(nextSlideButton.x, nextSlideButton.y, nextSlideButton.w, nextSlideButton.h);
+				ctx.font = "20pt Arial, sans-serif";
+				ctx.fillText("[NEXT]", nextSlideButton.x+5, nextSlideButton.y+30);
+			}
 		}
+
 // Keyboard. Allows player to move character with the WASD keys as well as the arrow keys.
 		
 		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
