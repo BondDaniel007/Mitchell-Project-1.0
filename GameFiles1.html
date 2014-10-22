@@ -161,11 +161,6 @@
 			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
 			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
 			
-			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
-				changeState(MENU);
-			}
-			mouse.clicked = false;
-			
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
 			//ctx.fillStyle = "#FF00FF";
