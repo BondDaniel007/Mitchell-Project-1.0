@@ -83,7 +83,7 @@
 				timerID = setInterval(function() { update(); drawPlay(ctx); }, 1000/60);
 			}
 			else if ( newState === PLOT ) {
-				timerID = setInterval(function() { update(); drawPlot(ctx); }, 1000/60;
+				timerID = setInterval(function() { update(); drawPlot(ctx); }, 1000/60);
 			}
 			state = newState;
 		}
@@ -132,7 +132,7 @@
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
 			ctx.strokeRect(storyButton.x, storyButton.y, storyButton.w, storyButton.h);
 			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
-			ctx.fillText("{PLOT}", storyButton.x+55, storyButton.y+30);
+			ctx.fillText("[PLOT]", storyButton.x+55, storyButton.y+30);
 		}
 		function collide( player, box ) {
 			if( player.x >= box.x + box.w )
@@ -160,6 +160,11 @@
 			ctx.font = "12pt Arial, sans-serif";
 			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
 			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
+			
+			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
+				changeState(MENU);
+			}
+			mouse.clicked = false;
 			
 			ctx.fillRect(player.x, player.y, player.w, player.h);
 
