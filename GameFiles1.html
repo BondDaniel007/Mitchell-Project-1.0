@@ -20,8 +20,9 @@
 		var currentSlide = 1;
 		var nextSlideButton = {};
 
-		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
-
+		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
+		var enemy1 = { x: 745, y: 5, w: 20, h: 20, dx: 1, dy: 1, health: 10 };
+		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
 		
@@ -119,7 +120,32 @@
 			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
 				player.x = orig.x;
 				player.y = orig.y; }
-			
+				
+			orig = { x: enemy1.x, y: enemy1.y };
+			//var enemy1 = { x: 745, y: 5, w: 20, h: 20, dx: 1, dy: 1, health: 10 };
+			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || collide(enemy1, player) )
+			{
+				enemy1.x = orig.x;
+				enemy1.y = orig.y; 
+			}
+			enemy1.x += enemy1.dx;	
+			enemy1.y += enemy1.dy;	
+			if ( enemy1.x < 0 ){
+				enemy1.x = 0;
+				enemy1.dx = -enemy1.dx;
+			}
+			else if ( enemy1.x + enemy1.w > ctx.canvas.width ){
+				enemy1.x = ctx.canvas.width - enemy1.w;
+				enemy1.dx = -enemy1.dx;
+			}
+			if ( enemy1.y < 0){
+				enemy1.y = 0;
+				enemy1.dy = -enemy1.dy;
+			}
+			else if ( enemy1.y + enemy1.h > ctx.canvas.height ){
+				enemy1.y = ctx.canvas.height - enemy1.h;
+				enemy1.dy = -enemy1.dy;
+			}
 			//make sure the player didn't go out of bounds
 			if ( player.x < 0 )
 				player.x = 0;
@@ -142,6 +168,7 @@
 		}
 		
 		function drawMenu(ctx) {
+			ctx.font = "24pt Arial, sans-serif";
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
 			ctx.strokeRect(storyButton.x, storyButton.y, storyButton.w, storyButton.h);
@@ -180,10 +207,9 @@
 			}
 			mouse.clicked = false;
 			
-			ctx.fillRect(player.x, player.y, player.w, player.h);
+			ctx.fillStyle = "#7FFFD4";
+			ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
 
-			//ctx.fillStyle = "#FF00FF";
-			//ctx.fillRect(player.x, player.y, player.w, player.h);
 			if ( player.ready )
 				ctx.drawImage(player.img, player.x, player.y );
 
