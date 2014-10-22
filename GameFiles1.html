@@ -16,10 +16,11 @@
 		var mouse = { x: 0, y: 0, clicked: false };
 		var playButton = {};
 		var menuButton = {};
+		var storyButton = {};
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5 };
 
-		var MENU = 0, PLAY = 1;
+		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
 		
 		var left = false, right = false, up = false, down = false;			
@@ -34,6 +35,13 @@
 			player.ready = true;
 		}
 		player.img.src = "Player.jpg";
+		
+		var storyBoard1 = new Image();
+		storyBoard1.ready = false;
+		storyBoard1.onload = function() {
+			storyBoard1.ready = true;
+		}
+		storyBoard1.src = "MitchellSlide1.jpg";
 		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
@@ -50,7 +58,7 @@
 			ctx.font = "24pt Arial, sans-serif";
 			ctx.textBaseline = "top";
 			playButton.x = ctx.canvas.width/2 - 100;
-			playButton.y = ctx.canvas.height/2 - 50;
+			playButton.y = ctx.canvas.height/2 - 150;
 			playButton.w = 200;
 			playButton.h = 100;
 			
@@ -58,6 +66,11 @@
 			menuButton.y = ctx.canvas.height - 30;
 			menuButton.w = 60;
 			menuButton.h = 25;
+			
+			storyButton.x = ctx.canvas.width/2 - 100;
+			storyButton.y = ctx.canvas.height/2;
+			storyButton.w = 200;
+			storyButton.h = 100;
 		}
 		// changes game state when clicked
 		function changeState( newState ) {
@@ -68,6 +81,9 @@
 			else if ( newState === PLAY ) {
 				//reset();
 				timerID = setInterval(function() { update(); drawPlay(ctx); }, 1000/60);
+			}
+			else if ( newState === PLOT ) {
+				timerID = setInterval(function() { update(); drawPlot(ctx); }, 1000/60;
 			}
 			state = newState;
 		}
@@ -102,8 +118,11 @@
 		}
 		
 		function updateMenu() {
-		if ( mouse.clicked && contains(playButton, mouse) === true ) {
-				changeState(PLAY);
+			if ( mouse.clicked && contains(playButton, mouse) === true ) {
+					changeState(PLAY);
+			}
+			else if ( mouse.clicked && contains (storyButton, mouse) === true ) {
+					changeState(PLOT);
 			}
 			mouse.clicked = false;
 		}
@@ -111,7 +130,9 @@
 		function drawMenu(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			ctx.strokeRect(playButton.x, playButton.y, playButton.w, playButton.h);
+			ctx.strokeRect(storyButton.x, storyButton.y, storyButton.w, storyButton.h);
 			ctx.fillText("[PLAY]", playButton.x+55, playButton.y+30);
+			ctx.fillText("{PLOT}", storyButton.x+55, storyButton.y+30);
 		}
 		function collide( player, box ) {
 			if( player.x >= box.x + box.w )
@@ -135,7 +156,7 @@
 			ctx.fillStyle = pattern;
 			ctx.fill();
 			
-			ctx.fillStyle = "#FF00FF";
+			ctx.fillStyle = "#000000";
 			ctx.font = "12pt Arial, sans-serif";
 			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
 			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
@@ -153,7 +174,13 @@
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
 		}
+
+// Draws the plot screens.
 		
+		function drawPlot(ctx) {
+			if ( storyBoard1.ready )
+				ctx.drawImage(storyBoard1, 0, 0);
+		}
 // Keyboard. Allows player to move character with the WASD keys as well as the arrow keys.
 		
 		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
