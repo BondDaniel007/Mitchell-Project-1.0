@@ -123,29 +123,25 @@
 				
 			orig = { x: enemy1.x, y: enemy1.y };
 			//var enemy1 = { x: 745, y: 5, w: 20, h: 20, dx: 1, dy: 1, health: 10 };
-			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || collide(enemy1, player) )
-			{
-				enemy1.x = orig.x;
-				enemy1.y = orig.y; 
-			}
-			enemy1.x += enemy1.dx;	
-			enemy1.y += enemy1.dy;	
-			if ( enemy1.x < 0 ){
-				enemy1.x = 0;
+			if ( enemy1.x < 0 || enemy1.x < box1.w + box1.x || enemy1.x < box2.w + box2.x || enemy1.x < box3.w + box3.x || enemy1.x < box4.w + box4.x){
+				//enemy1.x = 0;
 				enemy1.dx = -enemy1.dx;
 			}
 			else if ( enemy1.x + enemy1.w > ctx.canvas.width ){
-				enemy1.x = ctx.canvas.width - enemy1.w;
+				//enemy1.x = ctx.canvas.width - enemy1.w;
 				enemy1.dx = -enemy1.dx;
 			}
-			if ( enemy1.y < 0){
-				enemy1.y = 0;
+			else if ( enemy1.y < 0 || enemy1.y < box1.h + box1.y || enemy1.y < box2.h + box2.y || enemy1.y < box3.h + box3.y || enemy1.y < box4.h + box4.y){
+				//enemy1.y = 0;
 				enemy1.dy = -enemy1.dy;
 			}
-			else if ( enemy1.y + enemy1.h > ctx.canvas.height ){
-				enemy1.y = ctx.canvas.height - enemy1.h;
+			else if ( enemy1.y + enemy.h > ctx.canvas.height || enemy1.y + enemy.h > box1.y || enemy1.y + enemy.h > box2.y || enemy1.y + enemy.h > box3.y || enemy1.y + enemy.h > box4.y){
+				//enemy1.y = ctx.canvas.height - enemy1.h;
 				enemy1.dy = -enemy1.dy;
 			}
+			enemy1.x += enemy1.dx;	
+			enemy1.y += enemy1.dy;
+			
 			//make sure the player didn't go out of bounds
 			if ( player.x < 0 )
 				player.x = 0;
@@ -184,6 +180,15 @@
 				return false;
 			if ( box.y >= player.y + player.h )
 				return false;
+				
+			/*if( enemy1.x >= box.x + box.w )
+				return false;
+			if ( enemy1.y >= box.y + box.h )
+				return false;
+			if ( enemy1.x <= box.x )
+				return false;
+			if (  )
+				return false;*/	
 			
 			return true;
 		}
