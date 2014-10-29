@@ -21,7 +21,7 @@
 		var nextSlideButton = {};
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-		var enemy1 = { x: 745, y: 5, w: 20, h: 20, dx: 1, dy: 1, health: 10 };
+		var enemy1 = { x: 10, y: 50, w: 20, h: 20, dx: 2, dy: 6, health: 10 };
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -31,6 +31,8 @@
 		var box2 = { x: 500, y: 0,   w: 100, h: 375 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		var box4 = { x: 150, y: 60,  w: 250, h: 50};
+		
+		var everything = { x: 0, y: 0, w: 800, h: 600 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -120,33 +122,7 @@
 			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
 				player.x = orig.x;
 				player.y = orig.y; }
-				
-			orig = { x: enemy1.x, y: enemy1.y };
-			//var enemy1 = { x: 745, y: 5, w: 20, h: 20, dx: 1, dy: 1, health: 10 };
-			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || collide(enemy1, player) )
-			{
-				enemy1.x = orig.x;
-				enemy1.y = orig.y; 
-			}
-			enemy1.x += enemy1.dx;	
-			enemy1.y += enemy1.dy;	
-			if ( enemy1.x < 0 ){
-				enemy1.x = 0;
-				enemy1.dx = -enemy1.dx;
-			}
-			else if ( enemy1.x + enemy1.w > ctx.canvas.width ){
-				enemy1.x = ctx.canvas.width - enemy1.w;
-				enemy1.dx = -enemy1.dx;
-			}
-			if ( enemy1.y < 0){
-				enemy1.y = 0;
-				enemy1.dy = -enemy1.dy;
-			}
-			else if ( enemy1.y + enemy1.h > ctx.canvas.height ){
-				enemy1.y = ctx.canvas.height - enemy1.h;
-				enemy1.dy = -enemy1.dy;
-			}
-			//make sure the player didn't go out of bounds
+			
 			if ( player.x < 0 )
 				player.x = 0;
 			else if ( player.x + player.w > ctx.canvas.width )
@@ -155,6 +131,36 @@
 				player.y = 0;
 			else if ( player.y + player.h > ctx.canvas.height )
 				player.y = ctx.canvas.height - player.h;
+
+
+			var origY = enemy1.y;
+			var origX = enemy1.x;
+			
+			enemy1.x += enemy1.dx;	
+			enemy1.y += enemy1.dy;
+			
+			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || (enemy1.y < 0 ) || (enemy1.x<0) || (enemy1.y + enemy1.h> ctx.canvas.height ) || (enemy1.x + enemy1.w > ctx.canvas.width)) 
+			{
+				enemy1.x = origX;
+				enemy1.y = origY; 
+				
+				if ( enemy1.x < 0 || enemy1.x < box1.w + box1.x || enemy1.x < box2.w + box2.x || enemy1.x < box3.w + box3.x || enemy1.x < box4.w + box4.x ) {
+					enemy1.dx = -enemy1.dx;
+					//enemy1.x = origX;
+				}
+				else if ( enemy1.x + enemy1.w > ctx.canvas.width ) {
+					enemy1.dx = -enemy1.dx;
+					//enemy1.x = origX;
+				}
+				else if ( enemy1.y < 0) {
+					enemy1.dy = -enemy1.dy;
+					//enemy1.y = origY;
+				}
+				else if ( enemy1.y + enemy1.h > ctx.canvas.height ) {
+					enemy1.dy = -enemy1.dy;
+					//enemy1.y = origY;
+				}
+			}
 		}
 		
 		function updateMenu() {
