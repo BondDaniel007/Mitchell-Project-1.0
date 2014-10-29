@@ -19,6 +19,8 @@
 		var storyButton = {};
 		var currentSlide = 1;
 		var nextSlideButton = {};
+		var swordOut = false;
+		var SP;
 
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
 		var enemy1 = { x: 10, y: 50, w: 20, h: 20, dx: 2, dy: 6, health: 10 };
@@ -117,7 +119,7 @@
 				player.x -= player.dx;
 			if ( right == true )
 				player.x += player.dx;
-			
+				
 			//check if the player ran into a box and, if so, move back
 			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
 				player.x = orig.x;
@@ -214,6 +216,19 @@
 			}
 			mouse.clicked = false;
 			
+			// draw da sord
+			if ( swordOut == true ) {
+				ctx.fillStyle = "#6E4600";
+				if ( SP == 1 )
+					ctx.fillRect(player.x+20, player.y-40, 10, 40);
+				else if ( SP == 2 )
+					ctx.fillRect(player.x+50, player.y+20, 40, 10);
+				else if ( SP == 3 )
+					ctx.fillRect(player.x+20, player.y+50, 10, 40);
+				else if ( SP == 4 )
+					ctx.fillRect(player.x-40, player.y+20, 40, 10);
+			}
+			
 			ctx.fillStyle = "#7FFFD4";
 			ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
 
@@ -264,24 +279,43 @@
 		
 		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
+		var KEY_SWORD = 74;
 		
 		function handleKeyDown(evt) {
-			if ( evt.keyCode == KEY_UP )
+			if ( evt.keyCode == KEY_UP ) {
 				up = true;
-			if ( evt.keyCode == KEY_DOWN )
+				SP = 1;
+			}
+			if ( evt.keyCode == KEY_DOWN ) {
 				down = true;
-			if ( evt.keyCode == KEY_LEFT )
+				SP = 3;
+			}
+			if ( evt.keyCode == KEY_LEFT ) {
 				left = true;
-			if ( evt.keyCode == KEY_RIGHT )
+				SP = 4;
+			}
+			if ( evt.keyCode == KEY_RIGHT ) {
 				right = true;
-			if ( evt.keyCode == KEY_UPw )
+				SP = 2;
+			}
+			if ( evt.keyCode == KEY_UPw ) {
 				up = true;
-			if ( evt.keyCode == KEY_DOWNs )
+				SP = 1;
+			}
+			if ( evt.keyCode == KEY_DOWNs ) {
 				down = true;
-			if ( evt.keyCode == KEY_LEFTa )
+				SP = 3;
+			}
+			if ( evt.keyCode == KEY_LEFTa ) {
 				left = true;
-			if ( evt.keyCode == KEY_RIGHTd )
+				SP = 4;
+			}
+			if ( evt.keyCode == KEY_RIGHTd ) {
 				right = true;
+				SP = 2;
+			}
+			if ( evt.keyCode == KEY_SWORD )
+				swordOut = true;
 			
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
 				evt.preventDefault();
@@ -304,6 +338,8 @@
 				left = false;
 			if ( evt.keyCode == KEY_RIGHTd )
 				right = false;
+			if ( evt.keyCode == KEY_SWORD )
+				swordOut = false;
 			
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
 				evt.preventDefault();
