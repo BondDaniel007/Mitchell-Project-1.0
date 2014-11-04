@@ -142,21 +142,27 @@
 			
 			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || (enemy1.y < 0 ) || (enemy1.x<0) || (enemy1.y + enemy1.h> ctx.canvas.height ) || (enemy1.x + enemy1.w > ctx.canvas.width)) 
 			{
-				if ( ( enemy1.y < 0 || ( enemy1.y <= box1.h + box1.y && enemy1.y + enemy1.h >= box1.y ) || ( enemy1.y <= box2.h + box2.y && enemy1.y + enemy1.h >= box2.y ) || ( enemy1.y <= box3.h + box3.y && enemy1.y + enemy1.h >= box3.y ) || ( enemy1.y <= box4.h + box4.y && enemy1.y + enemy1.h >= box4.y) ) ) {
-					enemy1.dy = -enemy1.dy;
-				}
-				else if ( ( enemy1.x < 0 || ( enemy1.x <= box1.w + box1.x && enemy1.x + enemy1.w >= box1.x ) || ( enemy1.x <= box2.w + box2.x && enemy1.x + enemy1.w >= box2.x ) || ( enemy1.x <= box3.w + box3.x && enemy1.x + enemy1.w >= box3.x ) || ( enemy1.x <= box4.w + box4.x && enemy1.x + enemy1.w >= box4.x) ) ) {
-					enemy1.dx = -enemy1.dx;
-				}
-				else if ( enemy1.y + enemy1.h > ctx.canvas.height ) {
-					enemy1.dy = -enemy1.dy;
-				}
-				else if ( enemy1.x + enemy1.w > ctx.canvas.width ) {
-					enemy1.dx = -enemy1.dx;
-				}
-				
 				enemy1.x = origX;
 				enemy1.y = origY; 
+				if ( ( enemy1.y <= 0 || ( enemy1.y <= box1.h + box1.y && enemy1.y + enemy1.h >= box1.y ) || ( enemy1.y <= box2.h + box2.y && enemy1.y + enemy1.h >= box2.y ) || ( enemy1.y <= box3.h + box3.y && enemy1.y + enemy1.h >= box3.y ) || ( enemy1.y <= box4.h + box4.y && enemy1.y + enemy1.h >= box4.y) ) ) {
+					
+					enemy1.dy = -enemy1.dy;
+				}
+				else if ( ( enemy1.x <= 0 || ( enemy1.x <= box1.w + box1.x && enemy1.x + enemy1.w >= box1.x ) || ( enemy1.x <= box2.w + box2.x && enemy1.x + enemy1.w >= box2.x ) || ( enemy1.x <= box3.w + box3.x && enemy1.x + enemy1.w >= box3.x ) || ( enemy1.x <= box4.w + box4.x && enemy1.x + enemy1.w >= box4.x) ) ) {
+					/*enemy1.x = origX;
+					enemy1.y = origY; */
+					enemy1.dx = -enemy1.dx;
+				}
+				else if ( enemy1.y + enemy1.h >= ctx.canvas.height ) {
+					/*enemy1.x = origX;
+					enemy1.y = origY; */
+					enemy1.dx = -enemy1.dx;
+				}
+				else if ( enemy1.x + enemy1.w >= ctx.canvas.width ) {
+					/*enemy1.x = origX;
+					enemy1.y = origY; */
+					enemy1.dx = -enemy1.dx;
+				}
 			}
 		}
 		
