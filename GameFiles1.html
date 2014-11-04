@@ -275,39 +275,33 @@
 		
 		function handleKeyDown(evt) {
 			if ( evt.keyCode == KEY_UP ) {
-				up = true;
+				swordOut = true;
 				SP = 1;
 			}
 			if ( evt.keyCode == KEY_DOWN ) {
-				down = true;
+				swordOut = true;
 				SP = 3;
 			}
 			if ( evt.keyCode == KEY_LEFT ) {
-				left = true;
+				swordOut = true;
 				SP = 4;
 			}
 			if ( evt.keyCode == KEY_RIGHT ) {
-				right = true;
+				swordOut = true;
 				SP = 2;
 			}
 			if ( evt.keyCode == KEY_UPw ) {
 				up = true;
-				SP = 1;
 			}
 			if ( evt.keyCode == KEY_DOWNs ) {
 				down = true;
-				SP = 3;
 			}
 			if ( evt.keyCode == KEY_LEFTa ) {
 				left = true;
-				SP = 4;
 			}
 			if ( evt.keyCode == KEY_RIGHTd ) {
 				right = true;
-				SP = 2;
 			}
-			if ( evt.keyCode == KEY_SWORD )
-				swordOut = true;
 			
 			if ( 37 <= evt.keyCode && evt.keyCode <= 40 )
 				evt.preventDefault();
@@ -315,13 +309,13 @@
 		
 		function handleKeyUp(evt) {
 			if ( evt.keyCode == KEY_UP )
-				up = false;
+				swordOut = false;
 			if ( evt.keyCode == KEY_DOWN )
-				down = false;
+				swordOut = false;
 			if ( evt.keyCode == KEY_LEFT )
-				left = false;
+				swordOut = false;
 			if ( evt.keyCode == KEY_RIGHT )
-				right = false;
+				swordOut = false;
 			if ( evt.keyCode == KEY_UPw )
 				up = false;
 			if ( evt.keyCode == KEY_DOWNs )
