@@ -63,6 +63,13 @@
 		}
 		BGI.src = "BGI.jpg";
 		
+		var tile = new Image();
+		tile.ready = false;
+		tile.onload = function() {
+			tile.ready = true;
+		}
+		tile.src = "tile.jpg";
+		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
 		}
@@ -244,9 +251,37 @@
 
 			ctx.fillStyle = "#000000";
 			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 50 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 100 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 150 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 200 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 250 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 300 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 350 );
+			if ( tile.ready )
+				ctx.drawImage(tile, box1.x, box1.y + 400 );
 			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
+			if ( tile.ready )
+				ctx.drawImage(tile, box2.x, box2.y );
+			if ( tile.ready )
+				ctx.drawImage(tile, box2.x, box2.y );
+			if ( tile.ready )
+				ctx.drawImage(tile, box2.x, box2.y );
+			if ( tile.ready )
+				ctx.drawImage(tile, box2.x, box2.y );
 			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
+			if ( tile.ready )
+				ctx.drawImage(tile, box3.x, box3.y );
 		}
 
 // Draws the plot screens.
