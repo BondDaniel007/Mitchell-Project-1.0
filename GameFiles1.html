@@ -56,6 +56,13 @@
 		}
 		storyBoard2.src = "MitchellSlide2.jpg";
 		
+		var BGI = new Image();
+		BGI.ready = false;
+		BGI.onload = function() {
+			BGI.ready = true;
+		}
+		BGI.src = "BGI.jpg";
+		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
 		}
@@ -202,9 +209,8 @@
 		function drawPlay(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
 			
-			ctx.rect(0, 0, 800, 600);
-			ctx.fillStyle = pattern;
-			ctx.fill();
+			if ( BGI.ready )
+				ctx.drawImage(BGI, 0, 0 );
 			
 			ctx.fillStyle = "#000000";
 			ctx.font = "12pt Arial, sans-serif";
@@ -280,7 +286,6 @@
 		
 		var KEY_UPw = 87, KEY_DOWNs = 83, KEY_LEFTa = 65, KEY_RIGHTd = 68;
 		var KEY_UP = 38, KEY_DOWN = 40, KEY_LEFT = 37, KEY_RIGHT = 39;
-		var KEY_SWORD = 74;
 		
 		function handleKeyDown(evt) {
 			if ( evt.keyCode == KEY_UP ) {
@@ -347,11 +352,6 @@
 			document.addEventListener('click', getClick);
 			document.addEventListener('drag', getClick);
 			
-			var BGI = new Image();
-			BGI.onload = function() {
-				pattern = ctx.createPattern(BGI, 'repeat');
-			}
-			BGI.src = 'BGI.jpg';
 			init();
 			changeState(MENU);
 			//setInterval(function() { update(); draw(ctx); }, 1000/60);
