@@ -21,9 +21,10 @@
 		var nextSlideButton = {};
 		var swordOut = false;
 		var SP;
-
+		var collright, collleft, collup, colldown;
+		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-		var enemy1 = { x: 200, y: 5, w: 20, h: 20, dx: 2, dy: 2, health: 10 };
+		var enemy1 = { x: 300, y: 150, w: 20, h: 20, dx: 2, dy: 4, health: 10 };
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -127,7 +128,7 @@
 				player.x = 0;
 			else if ( player.x + player.w > ctx.canvas.width )
 				player.x = ctx.canvas.width - player.w;
-			if ( player.y < 0)
+			else if ( player.y < 0)
 				player.y = 0;
 			else if ( player.y + player.h > ctx.canvas.height )
 				player.y = ctx.canvas.height - player.h;
@@ -142,27 +143,18 @@
 			
 			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || (enemy1.y < 0 ) || (enemy1.x<0) || (enemy1.y + enemy1.h> ctx.canvas.height ) || (enemy1.x + enemy1.w > ctx.canvas.width)) 
 			{
-				enemy1.x = origX;
-				enemy1.y = origY; 
-				if ( ( enemy1.y <= 0 || ( enemy1.y <= box1.h + box1.y && enemy1.y + enemy1.h >= box1.y ) || ( enemy1.y <= box2.h + box2.y && enemy1.y + enemy1.h >= box2.y ) || ( enemy1.y <= box3.h + box3.y && enemy1.y + enemy1.h >= box3.y ) || ( enemy1.y <= box4.h + box4.y && enemy1.y + enemy1.h >= box4.y) ) ) {
-					
+				if ( collup || colldown ) {
 					enemy1.dy = -enemy1.dy;
 				}
-				else if ( ( enemy1.x <= 0 || ( enemy1.x <= box1.w + box1.x && enemy1.x + enemy1.w >= box1.x ) || ( enemy1.x <= box2.w + box2.x && enemy1.x + enemy1.w >= box2.x ) || ( enemy1.x <= box3.w + box3.x && enemy1.x + enemy1.w >= box3.x ) || ( enemy1.x <= box4.w + box4.x && enemy1.x + enemy1.w >= box4.x) ) ) {
-					/*enemy1.x = origX;
-					enemy1.y = origY; */
+				else if ( collleft || collright ) {
 					enemy1.dx = -enemy1.dx;
 				}
-				else if ( enemy1.y + enemy1.h >= ctx.canvas.height ) {
-					/*enemy1.x = origX;
-					enemy1.y = origY; */
-					enemy1.dx = -enemy1.dx;
-				}
-				else if ( enemy1.x + enemy1.w >= ctx.canvas.width ) {
-					/*enemy1.x = origX;
-					enemy1.y = origY; */
-					enemy1.dx = -enemy1.dx;
-				}
+				enemy1.x = origX;
+				enemy1.y = origY; 
+				collleft = false;
+				collright = false;
+				collup = false;
+				colldown = false;
 			}
 		}
 		
@@ -185,14 +177,22 @@
 			ctx.fillText("[PLOT]", storyButton.x+55, storyButton.y+30);
 		}
 		function collide( player, box ) {
-			if( player.x >= box.x + box.w )
+			if( player.x >= box.x + box.w ){
+				collleft = true;
 				return false;
-			if ( player.y >= box.y + box.h )
+			}
+			else if ( box.x >= player.x + player.w ){
+				collright = true;
 				return false;
-			if ( box.x >= player.x + player.w )
+			}
+			if ( player.y >= box.y + box.h ){
+				colldown = true;
 				return false;
-			if ( box.y >= player.y + player.h )
+			}
+			else if ( box.y >= player.y + player.h ){
+				collup = true;
 				return false;
+			}
 			
 			return true;
 		}
