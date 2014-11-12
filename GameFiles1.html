@@ -22,9 +22,10 @@
 		var swordOut = false;
 		var SP;
 		var collright, collleft, collup, colldown;
+		var ST = 0;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 2, dy: 4, health: 10 };
+		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 2, dy: 0, health: 10 };
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -69,6 +70,13 @@
 			tile.ready = true;
 		}
 		tile.src = "tile.jpg";
+		
+		enemy1.img = new Image();
+		enemy1.ready = false;
+		enemy1.img.onload = function() {
+			enemy1.ready = true;
+		}
+		enemy1.img.src = "LittleGuy.jpg";
 		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
@@ -137,7 +145,7 @@
 			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
 				player.x = orig.x;
 				player.y = orig.y; }
-			
+
 			if ( player.x < 0 )
 				player.x = 0;
 			else if ( player.x + player.w > ctx.canvas.width )
@@ -146,14 +154,43 @@
 				player.y = 0;
 			else if ( player.y + player.h > ctx.canvas.height )
 				player.y = ctx.canvas.height - player.h;
-
-			var origY = enemy1.y;
+				
+			enemy1.x += enemy1.dx;	
+			enemy1.y += enemy1.dy;	
+			
+			var turn = false
+			
+			if (enemy1.x >= 450 && enemy1.dy == 0 && turn == false){
+				enemy1.dy = 2;
+				enemy1.dx = 0;
+				console.log("TURN");
+				turn = true;
+			}
+			else if (enemy1.y >= 570 && enemy1.dx == 0 && turn == false){
+				enemy1.dx = -2;
+				enemy1.dy = 0;	
+				console.log("TURN");
+				turn = true;
+			}
+			else if (enemy1.x <= 200 && enemy1.dy == 0 && turn == false ){
+				enemy1.dy = -2;
+				enemy1.dx = 0;	
+				console.log("TURN");
+				turn = true;
+			}
+			else if (enemy1.y <= 150 && enemy1.dx == 0 && turn == false ){
+				enemy1.dx = 2;
+				enemy1.dy = 0;
+				console.log("TURN");
+				turn = true;
+			}	
+			/*var origY = enemy1.y;
 			var origX = enemy1.x;
 			
 			enemy1.x += enemy1.dx;	
 			enemy1.y += enemy1.dy;
 			
-			console.log("x:"+enemy1.x+" y:"+enemy1.y+" dx:"+enemy1.dx+" dy:"+enemy1.dy);
+			
 			
 			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || (enemy1.y < 0 ) || (enemy1.x<0) || (enemy1.y + enemy1.h> ctx.canvas.height ) || (enemy1.x + enemy1.w > ctx.canvas.width)) 
 			{
@@ -169,7 +206,7 @@
 				collright = false;
 				collup = false;
 				colldown = false;
-			}
+			}*/
 		}
 		
 		function updateMenu() {
@@ -195,7 +232,7 @@
 				collleft = true;
 				return false;
 			}
-			else if ( box.x >= player.x + player.w ){
+			else if ( player.x + player.w <= box.x ){
 				collright = true;
 				return false;
 			}
@@ -203,7 +240,7 @@
 				colldown = true;
 				return false;
 			}
-			else if ( box.y >= player.y + player.h ){
+			else if ( player.y + player.h <= box.y ){
 				collup = true;
 				return false;
 			}
@@ -244,7 +281,9 @@
 			}
 			
 			ctx.fillStyle = "#7FFFD4";
-			ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
+			if ( enemy1.ready )
+				ctx.drawImage(enemy1.img, enemy1.x, enemy1.y );
+			//ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
 
 			if ( player.ready )
 				ctx.drawImage(player.img, player.x, player.y );
