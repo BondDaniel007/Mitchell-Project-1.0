@@ -22,9 +22,14 @@
 		var swordOut = false;
 		var SP;
 		var collright, collleft, collup, colldown;
+		var stage =1;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
+<<<<<<< HEAD
 		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 1, dy: 0, health: 10 };
+=======
+		var enemy1 = { x: 200, y: 20, w: 20, h: 20, dx: 5, dy: 0, health: 10 };
+>>>>>>> origin/master
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -34,6 +39,7 @@
 		var box2 = { x: 500, y: 0,   w: 100, h: 400 };
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		var box4 = { x: 150, y: 60,  w: 250, h: 50};
+		var boxWdoor = { x: 650, y: 0,  w: 100, h: 50};
 
 		player.img = new Image();
 		player.ready = false;
@@ -172,22 +178,18 @@
 			/*while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
 				enemy1.dx = 0;
-				console.log("TURN");
 			}
 			while (enemy1.y >= 570 && enemy.x >= 200 ){
 				enemy1.dx = -2;
 				enemy1.dy = 0;	
-				console.log("TURN");
 			}
 			while (enemy1.x <= 200 && enemy.y <= 150 ){
 				enemy1.dy = -2;
 				enemy1.dx = 0;	
-				console.log("TURN");
 			}
 			while (enemy1.y <= 150 && enemy1.x <= 450){
 				enemy1.dx = 2;
 				enemy1.dy = 0;
-				console.log("TURN");
 			}	
 			var origY = enemy1.y;
 
@@ -215,6 +217,11 @@
 				collup = false;
 				colldown = false;
 			}*/
+			if ((player.x>=650 && player.x <= 750) && (player.y <= 50)){
+				stage = 2;
+				player.y = 500;
+				player.x = 50;
+			}
 		} 
 		
 		function updateMenu() {
@@ -260,113 +267,125 @@
 		
 		function drawPlay(ctx) {
 			ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
-			
-			if ( BGI.ready )
-				ctx.drawImage(BGI, 0, 0 );
-			
-			ctx.fillStyle = "#000000";
-			ctx.font = "12pt Arial, sans-serif";
-			ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
-			ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
-			
-			if ( mouse.clicked && contains(menuButton, mouse) === true ) {
-				changeState(MENU);
-				ctx.font = "24pt Arial, sans-serif";
-			}
-			mouse.clicked = false;
-			
-			// draw da sord
-			if ( swordOut == true ) {
-				ctx.fillStyle = "#6E4600";
-				if ( SP == 1 )
-					ctx.fillRect(player.x+20, player.y-40, 10, 40);
-				else if ( SP == 2 )
-					ctx.fillRect(player.x+50, player.y+20, 40, 10);
-				else if ( SP == 3 )
-					ctx.fillRect(player.x+20, player.y+50, 10, 40);
-				else if ( SP == 4 )
-					ctx.fillRect(player.x-40, player.y+20, 40, 10);
-			}
-			
-			ctx.fillStyle = "#7FFFD4";
-			ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
-
-			if ( player.ready )
-				ctx.drawImage(player.img, player.x, player.y );
-
-			ctx.fillStyle = "#000000";
-// I'm so sorry
-			ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 50 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 100 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 150 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 200 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 250 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 300 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 350 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box1.x, box1.y + 400 );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
-			ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 50 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 100 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 150 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 200 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 250 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 300 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x, box2.y + 350 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 50 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 100 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 150 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 200 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 250 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 300 );
-			if ( tile.ready )
-				ctx.drawImage(tile, box2.x + 50, box2.y + 350 );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
-			ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
-			if ( tile.ready )
-				ctx.drawImage(tile, box3.x, box3.y );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
-			ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
-			if ( tile.ready )
-				ctx.drawImage(tile, box4.x, box4.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box4.x + 50, box4.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box4.x + 100, box4.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box4.x + 150, box4.y );
-			if ( tile.ready )
-				ctx.drawImage(tile, box4.x + 200, box4.y );
+			if (stage == 1){
+				if ( BGI.ready )
+					ctx.drawImage(BGI, 0, 0 );
 				
+				ctx.fillStyle = "#000000";
+				ctx.font = "12pt Arial, sans-serif";
+				ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
+				ctx.fillText("[MENU]", menuButton.x+2, menuButton.y+3);
+				
+				if ( mouse.clicked && contains(menuButton, mouse) === true ) {
+					changeState(MENU);
+					ctx.font = "24pt Arial, sans-serif";
+				}
+				mouse.clicked = false;
+				
+				// draw da sord
+				if ( swordOut == true ) {
+					ctx.fillStyle = "#6E4600";
+					if ( SP == 1 )
+						ctx.fillRect(player.x+20, player.y-40, 10, 40);
+					else if ( SP == 2 )
+						ctx.fillRect(player.x+50, player.y+20, 40, 10);
+					else if ( SP == 3 )
+						ctx.fillRect(player.x+20, player.y+50, 10, 40);
+					else if ( SP == 4 )
+						ctx.fillRect(player.x-40, player.y+20, 40, 10);
+				}
+				
+				ctx.fillStyle = "#7FFFD4";
+				ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
+		
+				if ( player.ready )
+					ctx.drawImage(player.img, player.x, player.y );
+				
+				ctx.fillStyle = "#000000";
+				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
+// I'm s		rry
+				ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 50 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 100 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 150 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 200 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 250 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 300 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 350 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 400 );
+//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
+				ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 50 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 100 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 150 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 200 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 250 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 300 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x, box2.y + 350 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 50 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 100 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 150 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 200 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 250 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 300 );
+				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 350 );
+//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+				ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
+				if ( tile.ready )
+					ctx.drawImage(tile, box3.x, box3.y );
+//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
+				ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
+				if ( tile.ready )
+					ctx.drawImage(tile, box4.x, box4.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box4.x + 50, box4.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box4.x + 100, box4.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box4.x + 150, box4.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, box4.x + 200, box4.y );
+				if ( tile.ready )
+					ctx.drawImage(tile, 600, 0 );
+				if ( tile.ready )
+					ctx.drawImage(tile, 750, 0 );
+			}
+			if (stage == 2){
+				if ( BGI.ready )
+					ctx.drawImage(BGI, 0, 0 );
+				if ( player.ready )
+					ctx.drawImage(player.img, player.x, player.y );
+			}
 		}
+		
 
 // Draws the plot screens.
 		
