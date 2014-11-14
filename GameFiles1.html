@@ -158,31 +158,25 @@
 			enemy1.x += enemy1.dx;	
 			enemy1.y += enemy1.dy;	
 			
-			var turn = false
-			
-			if (enemy1.x >= 450 && enemy1.dy == 0 && turn == false){
+			while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
 				enemy1.dx = 0;
 				console.log("TURN");
-				turn = true;
 			}
-			else if (enemy1.y >= 570 && enemy1.dx == 0 && turn == false){
+			while (enemy1.y >= 570 && enemy.x >= 200 ){
 				enemy1.dx = -2;
 				enemy1.dy = 0;	
 				console.log("TURN");
-				turn = true;
 			}
-			else if (enemy1.x <= 200 && enemy1.dy == 0 && turn == false ){
+			while (enemy1.x <= 200 && enemy.y <= 150 ){
 				enemy1.dy = -2;
 				enemy1.dx = 0;	
 				console.log("TURN");
-				turn = true;
 			}
-			else if (enemy1.y <= 150 && enemy1.dx == 0 && turn == false ){
+			while (enemy1.y <= 150 && enemy1.x <= 450){
 				enemy1.dx = 2;
 				enemy1.dy = 0;
 				console.log("TURN");
-				turn = true;
 			}	
 			/*var origY = enemy1.y;
 			var origX = enemy1.x;
