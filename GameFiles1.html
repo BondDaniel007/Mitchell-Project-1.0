@@ -24,12 +24,9 @@
 		var collright, collleft, collup, colldown;
 		var stage =1;
 		
-		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-<<<<<<< HEAD
-		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 1, dy: 0, health: 10 };
-=======
-		var enemy1 = { x: 200, y: 20, w: 20, h: 20, dx: 5, dy: 0, health: 10 };
->>>>>>> origin/master
+		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 5 };
+		var enemy1 = { x: 200, y: 20, w: 20, h: 20, dx: 1, dy: 0, health: 2 };
+
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -173,7 +170,6 @@
 				enemy1.dy = 0;
 				enemy1.dx = 1;
 			}
-			console.log(enemy1.x + " " + enemy1.y);
 			
 			/*while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
@@ -303,7 +299,7 @@
 				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
-// I'm s		rry
+// I'm so sorry
 				ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box1.x, box1.y );
@@ -323,7 +319,7 @@
 					ctx.drawImage(tile, box1.x, box1.y + 350 );
 				if ( tile.ready )
 					ctx.drawImage(tile, box1.x, box1.y + 400 );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
 				ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box2.x, box2.y );
@@ -357,11 +353,11 @@
 					ctx.drawImage(tile, box2.x + 50, box2.y + 300 );
 				if ( tile.ready )
 					ctx.drawImage(tile, box2.x + 50, box2.y + 350 );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 				ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box3.x, box3.y );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
 				ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box4.x, box4.y );
