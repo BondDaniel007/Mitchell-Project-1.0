@@ -24,7 +24,7 @@
 		var collright, collleft, collup, colldown;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 2, dy: 4, health: 10 };
+		var enemy1 = { x: 300, y: 10, w: 20, h: 20, dx: 5, dy: 0, health: 10 };
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -147,10 +147,10 @@
 			else if ( player.y + player.h > ctx.canvas.height )
 				player.y = ctx.canvas.height - player.h;
 				
-			enemy1.x += enemy1.dx;	
-			enemy1.y += enemy1.dy;	
+			//enemy1.x += enemy1.dx;	
+			//enemy1.y += enemy1.dy;	
 			
-			while (enemy1.x >= 450 && enemy1.y <= 570){
+			/*while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
 				enemy1.dx = 0;
 				console.log("TURN");
@@ -170,7 +170,7 @@
 				enemy1.dy = 0;
 				console.log("TURN");
 			}	
-			/*var origY = enemy1.y;
+			var origY = enemy1.y;
 
 			var origY = enemy1.y;
 
