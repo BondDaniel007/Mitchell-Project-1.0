@@ -38,6 +38,11 @@
 		var box3 = { x: 100, y: 550, w: 50,  h: 50 };
 		var box4 = { x: 150, y: 60,  w: 250, h: 50};
 		var boxWdoor = { x: 650, y: 0,  w: 100, h: 50};
+		
+		var box5 = { x: 200, y: 400,   w: 50,  h: 200 };
+		var box6 = { x: 650, y: 0,   w: 50,  h: 500 };
+		var box7 = { x: 75, y: 75,   w: 450,  h: 50 };
+		var box8 = { x: 0, y: 500,   w: 100,  h: 50 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -67,12 +72,26 @@
 		}
 		BGI.src = "BGI.jpg";
 		
+		var BGI2 = new Image();
+		BGI2.ready = false;
+		BGI2.onload = function() {
+			BGI2.ready = true;
+		}
+		BGI2.src = "BGI2.jpg";
+		
 		var tile = new Image();
 		tile.ready = false;
 		tile.onload = function() {
 			tile.ready = true;
 		}
 		tile.src = "tile.jpg";
+		
+		var DarkMossy = new Image();
+		DarkMossy.ready = false;
+		DarkMossy.onload = function() {
+			DarkMossy.ready = true;
+		}
+		DarkMossy.src = "DarkMossy.png";
 		
 		function contains( r, m ) {
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
@@ -138,7 +157,11 @@
 				player.x += player.dx;
 				
 			//check if the player ran into a box and, if so, move back
-			if ( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4))  {
+			if (( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4)) && stage == 1 )  {
+				player.x = orig.x;
+				player.y = orig.y; }
+			
+			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8)) && stage == 2 )  {
 				player.x = orig.x;
 				player.y = orig.y; }
 			
@@ -171,7 +194,6 @@
 				enemy1.dy = 0;
 				enemy1.dx = 1;
 			}
-			console.log(enemy1.x + " " + enemy1.y);
 			
 			/*while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
@@ -377,8 +399,18 @@
 					ctx.drawImage(tile, 750, 0 );
 			}
 			if (stage == 2){
-				if ( BGI.ready )
-					ctx.drawImage(BGI, 0, 0 );
+				if ( BGI2.ready )
+					ctx.drawImage(BGI2, 0, 0 );
+					
+				if ( DarkMossy.ready )
+					ctx.drawImage(DarkMossy, box5.x, box5.y);
+				if ( DarkMossy.ready )
+					ctx.drawImage(DarkMossy, box5.x, box5.y+50);
+				if ( DarkMossy.ready )
+					ctx.drawImage(DarkMossy, box5.x, box5.y+100);
+				if ( DarkMossy.ready )
+					ctx.drawImage(DarkMossy, box5.x, box5.y+150);
+					
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 			}
