@@ -20,14 +20,17 @@
 		var currentSlide = 1;
 		var nextSlideButton = {};
 		var swordOut = false;
-		var SP;
 		var collright, collleft, collup, colldown;
 		var stage =1;
 		
-		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
-
-		var enemy1 = { x: 200, y: 20, w: 20, h: 20, dx: 1, dy: 0, health: 10 };
-
+		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 5 };
+		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
+		
+		var SP;
+		var SP1 = {}
+		var SP2 = {}
+		var SP3 = {}
+		var SP4 = {}
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -50,6 +53,13 @@
 			player.ready = true;
 		}
 		player.img.src = "Player.jpg";
+		
+		enemy1.img = new Image();
+		enemy1.ready = false;
+		enemy1.img.onload = function() {
+			enemy1.ready = true;
+		}
+		enemy1.img.src = "Enemy1.png";
 		
 		var storyBoard1 = new Image();
 		storyBoard1.ready = false;
@@ -156,6 +166,11 @@
 			if ( right == true )
 				player.x += player.dx;
 				
+			SP1 = { x: player.x+20, y: player.y-40, w: 10, h: 40};
+			SP2 = { x: player.x+50, y: player.y+20, w: 40, h: 10};
+			SP3 = { x: player.x+20, y: player.y+50, w: 10, h: 40};
+			SP4 = { x: player.x-40, y: player.y+20, w: 40, h: 10};
+				
 			//check if the player ran into a box and, if so, move back
 			if (( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4)) && stage == 1 )  {
 				player.x = orig.x;
@@ -194,6 +209,14 @@
 				enemy1.dy = 0;
 				enemy1.dx = 1;
 			}
+<<<<<<< HEAD
+=======
+			
+			if (swordOut = true )
+				die();
+			
+			console.log(enemy1.health);
+>>>>>>> origin/master
 			
 			/*while (enemy1.x >= 450 && enemy1.y <= 570){
 				enemy1.dy = 2;
@@ -282,7 +305,17 @@
 			
 			return true;
 		}
-
+		
+		function die () {
+			if ( SP == 1 ) {
+				if ( contains(SP1, enemy1) == true)
+					enemy1.health = enemy1.health - 1;
+			//if ( SP == 2 )
+			//if ( SP == 3 )
+			//if ( SP == 4 )
+			}
+		}
+	
 // Draws the character as well as the obstetrical on the map
 		
 		function drawPlay(ctx) {
@@ -306,24 +339,24 @@
 				if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
 					if ( SP == 1 )
-						ctx.fillRect(player.x+20, player.y-40, 10, 40);
+						ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
 					else if ( SP == 2 )
-						ctx.fillRect(player.x+50, player.y+20, 40, 10);
+						ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
 					else if ( SP == 3 )
-						ctx.fillRect(player.x+20, player.y+50, 10, 40);
+						ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
 					else if ( SP == 4 )
-						ctx.fillRect(player.x-40, player.y+20, 40, 10);
+						ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
 				}
 				
-				ctx.fillStyle = "#7FFFD4";
-				ctx.fillRect(enemy1.x, enemy1.y, enemy1.w, enemy1.h);
-		
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 				
+				if ( enemy1.ready )
+					ctx.drawImage(enemy1.img, enemy1.x, enemy1.y );
+				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
-// I'm s		rry
+// I'm so sorry
 				ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box1.x, box1.y );
@@ -343,7 +376,7 @@
 					ctx.drawImage(tile, box1.x, box1.y + 350 );
 				if ( tile.ready )
 					ctx.drawImage(tile, box1.x, box1.y + 400 );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
 				ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box2.x, box2.y );
@@ -377,11 +410,11 @@
 					ctx.drawImage(tile, box2.x + 50, box2.y + 300 );
 				if ( tile.ready )
 					ctx.drawImage(tile, box2.x + 50, box2.y + 350 );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
 				ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box3.x, box3.y );
-//++++++		+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
+//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
 				ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
 				if ( tile.ready )
 					ctx.drawImage(tile, box4.x, box4.y );
