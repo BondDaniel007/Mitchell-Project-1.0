@@ -349,8 +349,9 @@
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 				
-				if ( enemy1.ready )
-					ctx.drawImage(enemy1.img, enemy1.x, enemy1.y );
+				if ( enemy1.health > 0 )
+					if ( enemy1.ready )
+						ctx.drawImage(enemy1.img, enemy1.x, enemy1.y );
 				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
