@@ -46,6 +46,8 @@
 		var box6 = { x: 650, y: 0,   w: 50,  h: 500 };
 		var box7 = { x: 75, y: 75,   w: 450,  h: 50 };
 		var box8 = { x: 0, y: 450,   w: 150,  h: 50 };
+		var box9 = { x: 100, y: 250,   w: 50,  h: 150 };
+		var box10 = { x: 150, y: 350,   w: 100,  h: 50 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -177,7 +179,7 @@
 				player.x = orig.x;
 				player.y = orig.y; }
 			
-			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8)) && stage == 2 )  {
+			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8) || collide(player, box9) || collide(player, box10)) && stage == 2 )  {
 				player.x = orig.x;
 				player.y = orig.y; }
 			
@@ -213,49 +215,6 @@
 			
 			console.log(enemy1.health);
 
-			
-			/*while (enemy1.x >= 450 && enemy1.y <= 570){
-				enemy1.dy = 2;
-				enemy1.dx = 0;
-			}
-			while (enemy1.y >= 570 && enemy.x >= 200 ){
-				enemy1.dx = -2;
-				enemy1.dy = 0;	
-			}
-			while (enemy1.x <= 200 && enemy.y <= 150 ){
-				enemy1.dy = -2;
-				enemy1.dx = 0;	
-			}
-			while (enemy1.y <= 150 && enemy1.x <= 450){
-				enemy1.dx = 2;
-				enemy1.dy = 0;
-			}	
-			var origY = enemy1.y;
-
-			var origY = enemy1.y;
-
-			var origX = enemy1.x;
-			
-			enemy1.x += enemy1.dx;	
-			enemy1.y += enemy1.dy;
-			
-			console.log("x:"+enemy1.x+" y:"+enemy1.y+" dx:"+enemy1.dx+" dy:"+enemy1.dy);
-			
-			if ( collide(enemy1, box1) || collide(enemy1, box2) || collide(enemy1, box3) || collide(enemy1, box4) || (enemy1.y < 0 ) || (enemy1.x<0) || (enemy1.y + enemy1.h> ctx.canvas.height ) || (enemy1.x + enemy1.w > ctx.canvas.width)) 
-			{
-				if ( collup || colldown ) {
-					enemy1.dy = -enemy1.dy;
-				}
-				else if ( collleft || collright ) {
-					enemy1.dx = -enemy1.dx;
-				}
-				enemy1.x = origX;
-				enemy1.y = origY; 
-				collleft = false;
-				collright = false;
-				collup = false;
-				colldown = false;
-			}*/
 			if ((player.x>=650 && player.x <= 750) && (player.y <= 50)){
 				stage = 2;
 				player.y = 525;
@@ -417,7 +376,7 @@
 					ctx.drawImage(DarkMossy, box6.x, box6.y+350);
 					ctx.drawImage(DarkMossy, box6.x, box6.y+400);
 					ctx.drawImage(DarkMossy, box6.x, box6.y+450);
-					var box7 = { x: 75, y: 75,   w: 450,  h: 50 };
+					
 					ctx.drawImage(DarkMossy, box7.x, box7.y);
 					ctx.drawImage(DarkMossy, box7.x+50, box7.y);
 					ctx.drawImage(DarkMossy, box7.x+100, box7.y);
@@ -427,6 +386,34 @@
 					ctx.drawImage(DarkMossy, box7.x+300, box7.y);
 					ctx.drawImage(DarkMossy, box7.x+350, box7.y);
 					ctx.drawImage(DarkMossy, box7.x+400, box7.y);
+					
+					ctx.drawImage(DarkMossy, box9.x, box9.y);
+					ctx.drawImage(DarkMossy, box9.x, box9.y+50);
+					ctx.drawImage(DarkMossy, box9.x, box9.y+100);
+					
+					if ( swordOut == true ) {
+					ctx.fillStyle = "#6E4600";
+					if ( SP == 1 ) {
+						ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
+						if ( contains(SP1, enemy1 || SP1, enemy1 ) == true)
+							enemy1.health = enemy1.health - 1;
+					}
+					else if ( SP == 2 ){
+						ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
+						if ( contains(SP2, enemy1 || SP2, enemy1 ) == true)
+							enemy1.health = enemy1.health - 1;
+					}
+					else if ( SP == 3 ){
+						ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
+						if ( contains(SP3, enemy1 || SP3, enemy1 ) == true)
+							enemy1.health = enemy1.health - 1;
+					}
+					else if ( SP == 4 ){
+						ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
+						if ( contains(SP4, enemy1 || SP4, enemy1 ) == true)
+							enemy1.health = enemy1.health - 1;
+					}
+				}
 				}
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
