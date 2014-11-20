@@ -45,7 +45,7 @@
 		var box5 = { x: 200, y: 400,   w: 50,  h: 200 };
 		var box6 = { x: 650, y: 0,   w: 50,  h: 500 };
 		var box7 = { x: 75, y: 75,   w: 450,  h: 50 };
-		var box8 = { x: 0, y: 500,   w: 100,  h: 50 };
+		var box8 = { x: 0, y: 450,   w: 150,  h: 50 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -165,7 +165,8 @@
 				player.x -= player.dx;
 			if ( right == true )
 				player.x += player.dx;
-				
+			console.log(player.x+" "+player.y);
+			
 			SP1 = { x: player.x+20, y: player.y-40, w: 10, h: 40};
 			SP2 = { x: player.x+50, y: player.y+20, w: 40, h: 10};
 			SP3 = { x: player.x+20, y: player.y+50, w: 10, h: 40};
@@ -257,7 +258,7 @@
 			}*/
 			if ((player.x>=650 && player.x <= 750) && (player.y <= 50)){
 				stage = 2;
-				player.y = 500;
+				player.y = 525;
 				player.x = 50;
 			}
 		} 
@@ -356,92 +357,77 @@
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
 // I'm so sorry
 				ctx.fillRect(box1.x, box1.y, box1.w, box1.h);
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y );
-				if ( tile.ready )
+				if ( tile.ready ){
+					ctx.drawImage(tile, box1.x, box1.y );				
 					ctx.drawImage(tile, box1.x, box1.y + 50 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 100 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 150 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 200 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 250 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 300 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 350 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box1.x, box1.y + 400 );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++		
-				ctx.fillRect(box2.x, box2.y, box2.w, box2.h);
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 50 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 100 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 150 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 200 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 250 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 300 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x, box2.y + 350 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 50 );
-				if ( tile.ready )
+					ctx.drawImage(tile, box1.x, box1.y + 100 );				
+					ctx.drawImage(tile, box1.x, box1.y + 150 );				
+					ctx.drawImage(tile, box1.x, box1.y + 200 );				
+					ctx.drawImage(tile, box1.x, box1.y + 250 );				
+					ctx.drawImage(tile, box1.x, box1.y + 300 );				
+					ctx.drawImage(tile, box1.x, box1.y + 350 );				
+					ctx.drawImage(tile, box1.x, box1.y + 400 );					
+					ctx.drawImage(tile, box2.x, box2.y );				
+					ctx.drawImage(tile, box2.x, box2.y + 50 );				
+					ctx.drawImage(tile, box2.x, box2.y + 100 );				
+					ctx.drawImage(tile, box2.x, box2.y + 150 );				
+					ctx.drawImage(tile, box2.x, box2.y + 200 );				
+					ctx.drawImage(tile, box2.x, box2.y + 250 );				
+					ctx.drawImage(tile, box2.x, box2.y + 300 );				
+					ctx.drawImage(tile, box2.x, box2.y + 350 );				
+					ctx.drawImage(tile, box2.x + 50, box2.y );				
+					ctx.drawImage(tile, box2.x + 50, box2.y + 50 );				
 					ctx.drawImage(tile, box2.x + 50, box2.y + 100 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 150 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 200 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 250 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 300 );
-				if ( tile.ready )
-					ctx.drawImage(tile, box2.x + 50, box2.y + 350 );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++	
-				ctx.fillRect(box3.x, box3.y, box3.w, box3.h);
-				if ( tile.ready )
-					ctx.drawImage(tile, box3.x, box3.y );
-//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++				
-				ctx.fillRect(box4.x, box4.y, box4.w, box4.h);
-				if ( tile.ready )
-					ctx.drawImage(tile, box4.x, box4.y );
-				if ( tile.ready )
-					ctx.drawImage(tile, box4.x + 50, box4.y );
-				if ( tile.ready )
+					ctx.drawImage(tile, box2.x + 50, box2.y + 150 );				
+					ctx.drawImage(tile, box2.x + 50, box2.y + 200 );				
+					ctx.drawImage(tile, box2.x + 50, box2.y + 250 );				
+					ctx.drawImage(tile, box2.x + 50, box2.y + 300 );				
+					ctx.drawImage(tile, box2.x + 50, box2.y + 350 );				
+					ctx.drawImage(tile, box3.x, box3.y );			
+					ctx.drawImage(tile, box4.x, box4.y );				
+					ctx.drawImage(tile, box4.x + 50, box4.y );				
 					ctx.drawImage(tile, box4.x + 100, box4.y );
-				if ( tile.ready )
 					ctx.drawImage(tile, box4.x + 150, box4.y );
-				if ( tile.ready )
 					ctx.drawImage(tile, box4.x + 200, box4.y );
-				if ( tile.ready )
 					ctx.drawImage(tile, 600, 0 );
-				if ( tile.ready )
 					ctx.drawImage(tile, 750, 0 );
+				}
 			}
 			if (stage == 2){
 				if ( BGI2.ready )
 					ctx.drawImage(BGI2, 0, 0 );
 					
-				if ( DarkMossy.ready )
+				if ( DarkMossy.ready ){
 					ctx.drawImage(DarkMossy, box5.x, box5.y);
-				if ( DarkMossy.ready )
 					ctx.drawImage(DarkMossy, box5.x, box5.y+50);
-				if ( DarkMossy.ready )
 					ctx.drawImage(DarkMossy, box5.x, box5.y+100);
-				if ( DarkMossy.ready )
 					ctx.drawImage(DarkMossy, box5.x, box5.y+150);
 					
+					ctx.drawImage(DarkMossy, box8.x, box8.y);
+					ctx.drawImage(DarkMossy, box8.x+50, box8.y);
+					ctx.drawImage(DarkMossy, box8.x+100, box8.y);
+					
+					ctx.drawImage(DarkMossy, box6.x, box6.y);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+50);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+100);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+150);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+200);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+250);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+300);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+350);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+400);
+					ctx.drawImage(DarkMossy, box6.x, box6.y+450);
+					var box7 = { x: 75, y: 75,   w: 450,  h: 50 };
+					ctx.drawImage(DarkMossy, box7.x, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+50, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+100, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+150, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+200, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+250, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+300, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+350, box7.y);
+					ctx.drawImage(DarkMossy, box7.x+400, box7.y);
+				}
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 			}
