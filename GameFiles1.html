@@ -51,6 +51,7 @@
 		var box10 = { x: 150, y: 350,   w: 100,  h: 50 };
 		var box11 = { x: 200, y: 100,   w: 50,  h: 250 };
 		var box12 = { x: 0, y: 150,   w: 150,  h: 50 };
+		var box13 = { x: 300, y: 450,   w: 350,  h: 50 };
 
 		player.img = new Image();
 		player.ready = false;
@@ -182,7 +183,7 @@
 				player.x = orig.x;
 				player.y = orig.y; }
 			
-			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8) || collide(player, box9) || collide(player, box10) || collide(player, box11) || collide(player, box12)) && stage == 2 )  {
+			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8) || collide(player, box9) || collide(player, box10) || collide(player, box11) || collide(player, box12) || collide(player, box13)) && stage == 2 )  {
 				player.x = orig.x;
 				player.y = orig.y; }
 			
@@ -402,6 +403,18 @@
 					ctx.drawImage(DarkMossy, box11.x, box11.y+100);
 					ctx.drawImage(DarkMossy, box11.x, box11.y+150);
 					ctx.drawImage(DarkMossy, box11.x, box11.y+200);
+					
+					ctx.drawImage(DarkMossy, box12.x+50, box12.y);
+					ctx.drawImage(DarkMossy, box12.x+100, box12.y);
+					ctx.drawImage(DarkMossy, box12.x, box12.y);
+
+					ctx.drawImage(DarkMossy, box13.x, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+50, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+100, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+150, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+200, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+250, box13.y);
+					ctx.drawImage(DarkMossy, box13.x+300, box13.y);
 					
 					if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
