@@ -23,6 +23,7 @@
 		var collright, collleft, collup, colldown;
 		var stage =1;
 		var oops = 0;
+		var ST = 0;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 5 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
@@ -179,7 +180,7 @@
 				player.x -= player.dx;
 			if ( right == true )
 				player.x += player.dx;
-			console.log(player.x+" "+player.y);
+			console.log(player.x+" "+player.y+ "            " +up);
 			
 			SP1 = { x: player.x+20, y: player.y-40, w: 10, h: 40};
 			SP2 = { x: player.x+50, y: player.y+20, w: 40, h: 10};
@@ -187,6 +188,11 @@
 			SP4 = { x: player.x-40, y: player.y+20, w: 40, h: 10};
 			
 			var SPH1 = { x: SP1.x, y: SP1.y};
+			
+			if ( ST > 23 ) {
+				ST = 0;
+				swordOut = false;
+			}
 				
 			//check if the player ran into a box and, if so, move back
 			if (( collide(player, box1) || collide(player, box2) || collide(player, box3) || collide(player, box4)) && stage == 1 )  {
@@ -276,6 +282,45 @@
 			
 			return true;
 		}
+		
+		/*function timeconstruct() {
+			// Holds a timestamp indicating when the last tick occurred.
+			// Initially set to null, indicating that no tick has taken place.
+			this.time = null;
+
+			// Holds the accumulative time remaining for physics steps.
+			this.accumulator = 0.0;
+
+			// Holds the size of a single timestep in milliseconds, in this
+			// case we will perform around 60 steps per second.
+			this.stepSize = 60 / 1;
+
+			// Request an animation frame to invoke this.tick
+			requestAnimationFrame(this.tick.bind(this));
+		}
+		
+		function tick(time) {
+			// requestAnimationFrame's callback gives a very high resolution
+			// timestamp (DOMHighResTimeStamp) as an argument. The timestamp
+			// is accurate to a microsecond so we no longer need, nor want to
+			// call Date.now as it is only accurate to the millisecond.
+
+			// On the first tick delta time should be 0.
+			let delta = time - (this.time || time);
+			this.time = time;
+
+			// Add delta time to our accumulator, iterate over the steps we
+			// can do, and carry the leftovers over to the next frame.
+			this.accumulator += this.delta;
+			while(this.accumulator >= this.stepSize) {
+				this.step(this.stepSize);
+				this.accumulator -= this.stepSize;
+			}
+			this.draw(delta);
+
+			// Request an animation frame to invoke this.tick again
+			requestAnimationFrame(this.tick.bind(this));
+		}*/
 	
 // Draws the character as well as the obstetrical on the map
 		
@@ -300,8 +345,11 @@
 				if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
 					if ( SP == 1 ) {
-						ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
-						if ( contains(SPH1, enemy1) == true)
+						if ( ST < 23 ) {
+							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
+							ST++;
+						}
+						if ( contains(SP1, enemy1) == true)
 							enemy1.health = enemy1.health - 1;
 					}
 					else if ( SP == 2 ){
@@ -533,14 +581,6 @@
 			}
 		
 		function handleKeyUp(evt) {
-			if ( evt.keyCode == KEY_UP )
-				swordOut = false;
-			if ( evt.keyCode == KEY_DOWN )
-				swordOut = false;
-			if ( evt.keyCode == KEY_LEFT )
-				swordOut = false;
-			if ( evt.keyCode == KEY_RIGHT )
-				swordOut = false;
 			if ( evt.keyCode == KEY_UPw )
 				up = false;
 			if ( evt.keyCode == KEY_DOWNs )
