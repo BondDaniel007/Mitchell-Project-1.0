@@ -28,16 +28,11 @@
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 5 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
-<<<<<<< HEAD
 		var enemy2 = { x: 650, y: 150, w: 100, h: 100, health: 100 };
-		var cup1 = { x: 400, y: 300, w: 32, h: 44, dx: 1, dy: 0, health: 2, r: 12 };
-		
-=======
 		var cup1 = { x: 500, y: 300, w: 32, h: 44, dx: 1, dy: 0, health: 2};
 		var cup2 = { x: 500, y: 300, w: 32, h: 44, dx: -1, dy: 0, health: 2};
 		var cup3 = { x: 500, y: 300, w: 32, h: 44, dx: 0, dy: -1, health: 2};
 
->>>>>>> origin/master
 		var SP;
 		var SP1 = {}
 		var SP2 = {}
@@ -580,11 +575,10 @@
 					ctx.drawImage(DarkMossy, box13.x+200, box13.y);
 					ctx.drawImage(DarkMossy, box13.x+250, box13.y);
 					ctx.drawImage(DarkMossy, box13.x+300, box13.y);
-<<<<<<< HEAD
+
 				}
 				if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
-=======
 					
 					if ( swordOut == true ) {
 						ctx.fillStyle = "#6E4600";
@@ -620,7 +614,7 @@
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
 					}
->>>>>>> origin/master
+
 					if ( SP == 1 ) {
 						if ( ST < 23 ) {
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
