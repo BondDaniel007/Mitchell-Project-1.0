@@ -474,7 +474,7 @@
 				
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
-				
+					
 				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
@@ -622,9 +622,10 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
-
-						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
-							cup1.health = cup1.health - 1;
+	
+							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
+								cup1.health = cup1.health - 1;
+						}
 					}
 
 					if ( SP == 1 ) {
@@ -701,7 +702,6 @@
 				if ( cup3.health > 0 )
 					if ( cup1.ready )
 						ctx.drawImage(cup1.img, cup3.x, cup3.y );
-				}
 			}
 		}
 		
