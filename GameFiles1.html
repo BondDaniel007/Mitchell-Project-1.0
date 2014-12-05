@@ -442,6 +442,7 @@
 						ctx.moveTo(enemy2.x, enemy2.y+enemy2.h);
 						ctx.lineTo(enemy2.x+(enemy2.health), enemy2.y+enemy2.h);
 						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
 						ctx.stroke();
 					}
 				}
@@ -453,6 +454,7 @@
 						ctx.moveTo(enemy1.x, enemy1.y+enemy1.h);
 						ctx.lineTo(enemy1.x+(enemy1.health*17), enemy1.y+enemy1.h);
 						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
 						ctx.stroke();
 					}
 				}
@@ -508,6 +510,7 @@
 					ctx.moveTo(player.x, player.y+player.h);
 					ctx.lineTo(player.x+(player.health*10), player.y+player.h);
 					ctx.strokeStyle = '#00CCFF';
+					ctx.lineWidth = 3;
 					ctx.stroke();
 				
 				
@@ -649,10 +652,6 @@
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
-<<<<<<< HEAD
-=======
-
->>>>>>> origin/master
 						if ( SP == 1 ) {
 							if ( ST < 23 ) {
 								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -660,15 +659,15 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
-<<<<<<< HEAD
+
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
-=======
+
 	
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
->>>>>>> origin/master
+
 					}
 
 					if ( SP == 1 ) {
@@ -737,14 +736,35 @@
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 				if ( cup1.health > 0 )
-					if ( cup1.ready )
+					if ( cup1.ready ){
 						ctx.drawImage(cup1.img, cup1.x, cup1.y );
+						ctx.beginPath();
+						ctx.moveTo(cup1.x, cup1.y+cup1.h);
+						ctx.lineTo(cup1.x+(cup1.health), cup1.y+cup1.h);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
+						ctx.stroke();
+					}
 				if ( cup2.health > 0 )
-					if ( cup1.ready )
-						ctx.drawImage(cup1.img, cup2.x, cup2.y );
+					if ( cup1.ready ){
+						ctx.drawImage(cup2.img, cup2.x, cup2.y );
+						ctx.drawImage(cup2.img, cup2.x, cup2.y );
+						ctx.beginPath();
+						ctx.moveTo(cup2.x, cup2.y+cup2.h);
+						ctx.lineTo(cup2.x+(cup2.health), cup2.y+cup2.h);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
+					}
 				if ( cup3.health > 0 )
-					if ( cup1.ready )
+					if ( cup1.ready ){
 						ctx.drawImage(cup1.img, cup3.x, cup3.y );
+						ctx.drawImage(cup1.img, cup1.x, cup1.y );
+						ctx.beginPath();
+						ctx.moveTo(cup1.x, cup1.y+cup1.h);
+						ctx.lineTo(cup1.x+(cup1.health), cup1.y+cup1.h);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
+					}
 			}
 		}
 		
