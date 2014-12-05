@@ -377,45 +377,6 @@
 			return true;
 		}
 		
-		/*function timeconstruct() {
-			// Holds a timestamp indicating when the last tick occurred.
-			// Initially set to null, indicating that no tick has taken place.
-			this.time = null;
-
-			// Holds the accumulative time remaining for physics steps.
-			this.accumulator = 0.0;
-
-			// Holds the size of a single timestep in milliseconds, in this
-			// case we will perform around 60 steps per second.
-			this.stepSize = 60 / 1;
-
-			// Request an animation frame to invoke this.tick
-			requestAnimationFrame(this.tick.bind(this));
-		}
-		
-		function tick(time) {
-			// requestAnimationFrame's callback gives a very high resolution
-			// timestamp (DOMHighResTimeStamp) as an argument. The timestamp
-			// is accurate to a microsecond so we no longer need, nor want to
-			// call Date.now as it is only accurate to the millisecond.
-
-			// On the first tick delta time should be 0.
-			let delta = time - (this.time || time);
-			this.time = time;
-
-			// Add delta time to our accumulator, iterate over the steps we
-			// can do, and carry the leftovers over to the next frame.
-			this.accumulator += this.delta;
-			while(this.accumulator >= this.stepSize) {
-				this.step(this.stepSize);
-				this.accumulator -= this.stepSize;
-			}
-			this.draw(delta);
-
-			// Request an animation frame to invoke this.tick again
-			requestAnimationFrame(this.tick.bind(this));
-		}*/
-	
 // Draws the character as well as the obstetrical on the map
 		
 		function drawPlay(ctx) {
@@ -467,19 +428,19 @@
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
 							ST++;
 						}
-						if ( contains(SH11, enemy1 || SH12, enemy1) == true)
+						if ( contains(enemy1, SH11 ) == true || contains(enemy1, SH12) == true)
 							enemy1.health = enemy1.health - 1;
-						if ( contains(SH11, enemy2 || SH12, enemy2 ) == true)
-						enemy2.health = enemy2.health - 1;
+						if ( contains(enemy2, SH11 ) == true || contains(enemy2, SH12) == true)
+							enemy2.health = enemy2.health - 1;
 					}
 					else if ( SP == 2 ){
 						if (ST < 23 ) {
 							ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
 							ST++;
 						}
-						if ( contains(SP2, enemy1 || SP2, enemy1 ) == true)
+						if ( contains(enemy1, SH21 ) == true || contains(enemy1, SH22) == true)
 							enemy1.health = enemy1.health - 1;
-						if ( contains(SP2, enemy2 || SP2, enemy2 ) == true)
+						if ( contains(enemy2, SH21 ) == true || contains(enemy2, SH22) == true)
 							enemy2.health = enemy2.health - 1;
 					}
 					else if ( SP == 3 ){
@@ -487,9 +448,9 @@
 							ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
 							ST++;
 						}
-						if ( contains(SP3, enemy1 || SP3, enemy1 ) == true)
+						if ( contains(enemy1, SH31 ) == true || contains(enemy1, SH32) == true)
 							enemy1.health = enemy1.health - 1;
-						if ( contains(SP3, enemy2 || SP3, enemy2 ) == true)
+						if ( contains(enemy2, SH31 ) == true || contains(enemy2, SH32) == true)
 							enemy2.health = enemy2.health - 1;
 					}
 					else if ( SP == 4 ){
@@ -497,9 +458,9 @@
 							ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
 							ST++;
 						}
-						if ( contains(SP4, enemy1 || SP4, enemy1 ) == true)
+						if ( contains(enemy1, SH41 ) == true || contains(enemy1, SH42) == true)
 							enemy1.health = enemy1.health - 1;
-						if ( contains(SP4, enemy2 || SP4, enemy2 ) == true)
+						if ( contains(enemy2, SH41 ) == true || contains(enemy2, SH42) == true)
 							enemy2.health = enemy2.health - 1;
 					}
 				}
@@ -659,15 +620,23 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
+<<<<<<< HEAD
 
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
 
+=======
+						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
+							cup1.health = cup1.health - 1;
+>>>>>>> origin/master
 	
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 					}
 
 					if ( SP == 1 ) {
