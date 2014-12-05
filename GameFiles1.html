@@ -614,7 +614,7 @@
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
-<<<<<<< HEAD
+
 						if ( SP == 1 ) {
 							if ( ST < 23 ) {
 								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -622,7 +622,7 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
-=======
+
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
 					}
@@ -631,7 +631,6 @@
 						if ( ST < 23 ) {
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
 							ST++;
->>>>>>> origin/master
 						}
 						else if ( SP == 2 ){
 							if (ST < 23 ) {
@@ -702,6 +701,7 @@
 				if ( cup3.health > 0 )
 					if ( cup1.ready )
 						ctx.drawImage(cup1.img, cup3.x, cup3.y );
+				}
 			}
 		}
 		
