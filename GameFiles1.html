@@ -38,6 +38,14 @@
 		var SP2 = {}
 		var SP3 = {}
 		var SP4 = {}
+		var SH11 = {};
+		var SH12 = {};
+		var SH21 = {};
+		var SH22 = {};
+		var SH31 = {};
+		var SH32 = {};
+		var SH41 = {};
+		var SH42 = {};
 		
 		var MENU = 0, PLAY = 1, PLOT = 2;
 		var state = MENU;
@@ -199,10 +207,18 @@
 			var PXcur = player.x;
 			var PYcur = player.y;
 			
-			SP1 = { x: player.x+20, y: player.y-40, w: 10, h: 40};
-			SP2 = { x: player.x+50, y: player.y+20, w: 40, h: 10};
-			SP3 = { x: player.x+20, y: player.y+50, w: 10, h: 40};
-			SP4 = { x: player.x-40, y: player.y+20, w: 40, h: 10};
+			SP1 =  { x: player.x+20, y: player.y-40, w: 10, h: 40};
+			SP2 =  { x: player.x+50, y: player.y+20, w: 40, h: 10};
+			SP3 =  { x: player.x+20, y: player.y+50, w: 10, h: 40};
+			SP4 =  { x: player.x-40, y: player.y+20, w: 40, h: 10};
+			SH11 = { x: player.x+20, y: player.y-40};
+			SH12 = { x: player.x+30, y: player.y-40};
+			SH21 = { x: player.x+90, y: player.y+20};
+			SH22 = { x: player.x+90, y: player.y+30};
+			SH31 = { x: player.x+20, y: player.y+90};
+			SH32 = { x: player.x+30, y: player.y+90};
+			SH41 = { x: player.x-40, y: player.y+20};
+			SH42 = { x: player.x-40, y: player.y+30};
 			
 			var SPH1 = { x: SP1.x, y: SP1.y};
 			
@@ -435,9 +451,9 @@
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
 							ST++;
 						}
-						if ( contains(SP1, enemy1) == true)
+						if ( contains(SH11, enemy1 || SH12, enemy1) == true)
 							enemy1.health = enemy1.health - 1;
-						if ( contains(SP1, enemy2 || SP1, enemy2 ) == true)
+						if ( contains(SH11, enemy2 || SH12, enemy2 ) == true)
 						enemy2.health = enemy2.health - 1;
 					}
 					else if ( SP == 2 ){
@@ -614,7 +630,6 @@
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
-<<<<<<< HEAD
 						if ( SP == 1 ) {
 							if ( ST < 23 ) {
 								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -622,7 +637,6 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
-=======
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
 					}
@@ -631,7 +645,6 @@
 						if ( ST < 23 ) {
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
 							ST++;
->>>>>>> origin/master
 						}
 						else if ( SP == 2 ){
 							if (ST < 23 ) {
