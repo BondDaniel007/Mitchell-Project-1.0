@@ -490,7 +490,7 @@
 				
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
-				
+					
 				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
@@ -630,6 +630,10 @@
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
+<<<<<<< HEAD
+=======
+
+>>>>>>> origin/master
 						if ( SP == 1 ) {
 							if ( ST < 23 ) {
 								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -637,8 +641,15 @@
 							}
 							if ( contains(SP1, cup2) == true)
 								cup2.health = cup2.health - 1;
+<<<<<<< HEAD
 						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 							cup1.health = cup1.health - 1;
+=======
+	
+							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
+								cup1.health = cup1.health - 1;
+						}
+>>>>>>> origin/master
 					}
 
 					if ( SP == 1 ) {
