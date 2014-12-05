@@ -435,13 +435,27 @@
 				}
 				mouse.clicked = false;
 				
-				if ( enemy2.ready )
-					if ( enemy2.health > 0 )
+				if ( enemy2.ready ){
+					if ( enemy2.health > 0 ){
 						ctx.drawImage(enemy2.img, enemy2.x, enemy2.y );
+						ctx.beginPath();
+						ctx.moveTo(enemy2.x, enemy2.y+enemy2.h);
+						ctx.lineTo(enemy2.x+(enemy2.health), enemy2.y+enemy2.h);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.stroke();
+					}
+				}
 				
-				if ( enemy1.health > 0 )
-					if ( enemy1.ready )
+				if ( enemy1.health > 0 ){
+					if ( enemy1.ready ){
 						ctx.drawImage(enemy1.img, enemy1.x, enemy1.y );
+						ctx.beginPath();
+						ctx.moveTo(enemy1.x, enemy1.y+enemy1.h);
+						ctx.lineTo(enemy1.x+(enemy1.health*17), enemy1.y+enemy1.h);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.stroke();
+					}
+				}
 				
 				// draw da sord
 				if ( swordOut == true ) {
@@ -490,7 +504,12 @@
 				
 				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
-					
+					ctx.beginPath();
+					ctx.moveTo(player.x, player.y+player.h);
+					ctx.lineTo(player.x+(player.health*10), player.y+player.h);
+					ctx.strokeStyle = '#00CCFF';
+					ctx.stroke();
+				
 				
 				ctx.fillStyle = "#000000";
 				ctx.fillRect(boxWdoor.x, boxWdoor.y, boxWdoor.w, boxWdoor.h)
