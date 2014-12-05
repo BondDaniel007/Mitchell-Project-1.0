@@ -273,6 +273,11 @@
 				player.y = 525;
 				player.x = 50;
 			}
+			if (((player.x>=700 && player.x <= 750) && (player.y <= 50))&& stage == 2 ){
+				stage = 3;
+				player.y = 525;
+				player.x = 50;
+			}
 			
 			//cup1.r^2 = cup1.x^2 + cup1.y^2; maybe
 			if ( stage == 2 ){
@@ -575,6 +580,10 @@
 					ctx.drawImage(DarkMossy, box13.x+200, box13.y);
 					ctx.drawImage(DarkMossy, box13.x+250, box13.y);
 					ctx.drawImage(DarkMossy, box13.x+300, box13.y);
+					
+					ctx.drawImage(DarkMossy, 750, 0);
+					ctx.fillStyle = '#000000';
+					ctx.fillRect(700,0,50,50);
 
 				}
 				if ( swordOut == true ) {
