@@ -558,101 +558,101 @@
 					if ( swordOut == true ) {
 						ctx.fillStyle = "#6E4600";
 						if ( SP == 1 ) {
-						if ( ST < 23 ) {
-							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
-							ST++;
+							if ( ST < 23 ) {
+								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
+								ST++;
+							}
+							if ( contains(SP1, cup1) == true)
+								cup1.health = cup1.health - 1;
 						}
-						if ( contains(SP1, cup1) == true)
-							cup1.health = cup1.health - 1;
-					}
-					else if ( SP == 2 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
-							ST++;
+						else if ( SP == 2 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
+								ST++;
+							}
+							if ( contains(SP2, cup1 || SP2, cup1 ) == true)
+								cup1.health = cup1.health - 1;
 						}
-						if ( contains(SP2, cup1 || SP2, cup1 ) == true)
-							cup1.health = cup1.health - 1;
-					}
-					else if ( SP == 3 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
-							ST++;
+						else if ( SP == 3 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
+								ST++;
+							}
+							if ( contains(SP3, cup1 || SP3, cup1 ) == true)
+								cup1.health = cup1.health - 1;
 						}
-						if ( contains(SP3, cup1 || SP3, cup1 ) == true)
-							cup1.health = cup1.health - 1;
-					}
-					else if ( SP == 4 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
-							ST++;
+						else if ( SP == 4 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
+								ST++;
+							}
+							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
+								cup1.health = cup1.health - 1;
 						}
-						if ( contains(SP4, cup1 || SP4, cup1 ) == true)
-							cup1.health = cup1.health - 1;
-					}
-					if ( SP == 1 ) {
-						if ( ST < 23 ) {
-							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
-							ST++;
+						if ( SP == 1 ) {
+							if ( ST < 23 ) {
+								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
+								ST++;
+							}
+							if ( contains(SP1, cup2) == true)
+								cup2.health = cup2.health - 1;
 						}
-						if ( contains(SP1, cup2) == true)
-							cup2.health = cup2.health - 1;
-					}
-					else if ( SP == 2 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
-							ST++;
+						else if ( SP == 2 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
+								ST++;
+							}
+							if ( contains(SP2, cup2 || SP2, cup2 ) == true)
+								cup2.health = cup2.health - 1;
 						}
-						if ( contains(SP2, cup2 || SP2, cup2 ) == true)
-							cup2.health = cup2.health - 1;
-					}
-					else if ( SP == 3 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
-							ST++;
+						else if ( SP == 3 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
+								ST++;
+							}
+							if ( contains(SP3, cup2 || SP3, cup2 ) == true)
+								cup2.health = cup2.health - 1;
 						}
-						if ( contains(SP3, cup2 || SP3, cup2 ) == true)
-							cup2.health = cup2.health - 1;
-					}
-					else if ( SP == 4 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
-							ST++;
+						else if ( SP == 4 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
+								ST++;
+							}
+							if ( contains(SP4, cup2 || SP4, cup2 ) == true)
+								cup2.health = cup2.health - 1;
 						}
-						if ( contains(SP4, cup2 || SP4, cup2 ) == true)
-							cup2.health = cup2.health - 1;
-					}
-					if ( SP == 1 ) {
-						if ( ST < 23 ) {
-							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
-							ST++;
+						if ( SP == 1 ) {
+							if ( ST < 23 ) {
+								ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
+								ST++;
+							}
+							if ( contains(SP1, cup3) == true)
+								cup3.health = cup3.health - 1;
 						}
-						if ( contains(SP1, cup3) == true)
-							cup3.health = cup3.health - 1;
-					}
-					else if ( SP == 2 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
-							ST++;
+						else if ( SP == 2 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP2.x, SP2.y, SP2.w, SP2.h);
+								ST++;
+							}
+							if ( contains(SP2, cup3 || SP2, cup3 ) == true)
+								cup3.health = cup3.health - 1;
 						}
-						if ( contains(SP2, cup3 || SP2, cup3 ) == true)
-							cup3.health = cup3.health - 1;
-					}
-					else if ( SP == 3 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
-							ST++;
+						else if ( SP == 3 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP3.x, SP3.y, SP3.w, SP3.h);
+								ST++;
+							}
+							if ( contains(SP3, cup3 || SP3, cup3 ) == true)
+								cup3.health = cup3.health - 1;
 						}
-						if ( contains(SP3, cup3 || SP3, cup3 ) == true)
-							cup3.health = cup3.health - 1;
-					}
-					else if ( SP == 4 ){
-						if (ST < 23 ) {
-							ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
-							ST++;
+						else if ( SP == 4 ){
+							if (ST < 23 ) {
+								ctx.fillRect(SP4.x, SP4.y, SP4.w, SP4.h);
+								ST++;
+							}
+							if ( contains(SP4, cup3 || SP4, cup3 ) == true)
+								cup3.health = cup3.health - 1;
 						}
-						if ( contains(SP4, cup3 || SP4, cup3 ) == true)
-							cup3.health = cup3.health - 1;
-					}
 					}
 				}
 				if ( player.ready )
