@@ -26,7 +26,7 @@
 		var oops = 0;
 		var ST = 0;
 		
-		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 5 };
+		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
 		var enemy2 = { x: 650, y: 150, w: 100, h: 100, health: 100 };
 		var cup1 = { x: 500, y: 300, w: 32, h: 44, dx: 1, dy: 0, health: 64};
@@ -322,6 +322,9 @@
 			if (( collide(player, box5) || collide(player, box6) || collide(player, box7) || collide(player, box8) || collide(player, box9) || collide(player, box10) || collide(player, box11) || collide(player, box12) || collide(player, box13)) && stage == 2 )  {
 				player.x = orig.x;
 				player.y = orig.y; }
+			
+			if ( collide(player, enemy1) == true || collide(player, enemy2) == true || collide(player, cup1) == true || collide(player, cup2) == true || collide(player, cup3) == true || collide(player, BOSS) == true)
+				player.health = player.health - 1;
 			
 			if ( player.x < 0 )
 				player.x = 0;
