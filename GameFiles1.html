@@ -774,8 +774,8 @@
 					
 				if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
-<<<<<<< HEAD
-					if ( swordOut == true ) {
+
+/*					if ( swordOut == true ) {
 						ctx.fillStyle = "#6E4600";
 						if ( SP == 1 ) {
 							if ( ST < 23 ) {
@@ -826,7 +826,7 @@
 						}
 					}
 =======
->>>>>>> origin/master
+>>>>>>> origin/master*/
 					if ( SP == 1 ) {
 						if ( ST < 23 ) {
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -869,7 +869,7 @@
 					ctx.lineWidth = 3;
 					ctx.stroke();
 				}
-<<<<<<< HEAD
+/*<<<<<<< HEAD
 				if ( BOSS.ready ){
 					ctx.drawImage(BOSS.img, BOSS.x, BOSS.y );
 					ctx.beginPath();
@@ -878,18 +878,17 @@
 					ctx.strokeStyle = '#00CCFF';
 					ctx.lineWidth = 3;
 					ctx.stroke();
-=======
+*/
 				if ( BOSS.health > 0 ) {
 					if ( BOSS.ready ){
 						ctx.drawImage(BOSS.img, BOSS.x, BOSS.y );
 						ctx.beginPath();
 						ctx.moveTo(BOSS.x, BOSS.y-3);
-						ctx.lineTo(BOSS.x+(BOSS.health/20), BOSS.y-3);
+						ctx.lineTo(BOSS.x+(BOSS.health/2), BOSS.y-3);
 						ctx.strokeStyle = '#00CCFF';
 						ctx.lineWidth = 3;
 						ctx.stroke();
 					}
->>>>>>> origin/master
 				}
 			}
 		}
