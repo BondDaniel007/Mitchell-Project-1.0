@@ -137,6 +137,20 @@
 		}
 		storyBoard2.src = "MitchellSlide2.jpg";
 		
+		var victoryScreen = new Image();
+		victoryScreen.ready = false;
+		victoryScreen.onload = function() {
+			victoryScreen.ready = true;
+		}
+		victoryScreen.src = "victory.jpg";
+		
+		var gameOverScreen = new Image();
+		gameOverScreen.ready = false;
+		gameOverScreen.onload = function() {
+			gameOverScreen.ready = true;
+		}
+		gameOverScreen.src = "gameover.jpg";
+		
 		var BGI = new Image();
 		BGI.ready = false;
 		BGI.onload = function() {
@@ -242,7 +256,7 @@
 			firing = true;
 			curStamp = Date.now();
 			elapsed = curStamp - lastStamp;
-		
+				
 			// subtract that from the amount of time we still need to wait before firing again
 			fireTime -= elapsed;
 			
@@ -490,7 +504,7 @@
 			if (stage == 1){
 				if ( BGI.ready )
 					ctx.drawImage(BGI, 0, 0 );
-				
+					
 				ctx.fillStyle = "#000000";
 				ctx.font = "12pt Arial, sans-serif";
 				ctx.strokeRect(menuButton.x, menuButton.y, menuButton.w, menuButton.h);
@@ -575,7 +589,7 @@
 					ctx.drawImage(player.img, player.x, player.y );
 					ctx.beginPath();
 					ctx.moveTo(player.x, player.y-3);
-					ctx.lineTo(player.x+(player.health*10), player.y-3);
+					ctx.lineTo(player.x+(player.health/2), player.y-3);
 					ctx.strokeStyle = '#00CCFF';
 					ctx.lineWidth = 3;
 					ctx.stroke();
@@ -623,6 +637,7 @@
 				ctx.fillStyle = "#00CC00";
 				for ( var i=0; i<bullets.length; ++i ) {
 					ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
+				
 		}
 			}
 //                                           \\\\\\\\\\\\\\\\Stage 2//////////////////
