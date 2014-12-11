@@ -67,6 +67,25 @@
 		var box11 = { x: 200, y: 100,   w: 50,  h: 250 };
 		var box12 = { x: 0, y: 150,   w: 150,  h: 50 };
 		var box13 = { x: 300, y: 450,   w: 350,  h: 50 };
+		
+		var angle = 0;		// The angle the turret makes with the horizon and the mouse
+		var emit_dx = 0;	// used to find where the tip of the gun should move to
+		var emit_dy = 0;
+		var bspeed = 3;		// bullet speed, in pixels per frame
+		
+		var curStamp = 0;
+		var lastStamp = 0;
+		var elapsed = 0;
+		var fireTime = 0;
+		var magazineSize = 20;
+		var radius = 100;
+		var barrel = {		// where the tip of the gun is. Updates every frame.
+			x: 0,
+			y: 0,
+		};
+		var firing = false;
+
+		var bullets = [];
 
 		player.img = new Image();
 		player.ready = false;
@@ -156,6 +175,18 @@
 			return ! (r.x>m.x || r.y>m.y || m.x>r.x+r.w || m.y>r.y+r.h );
 		}
 		
+		function makeBullet(X, Y, W, H, DX, DY, SPEED) {
+			var bbb = {
+				x: X - 3,
+				y: Y - 1,
+				w: W,
+				h: H,
+				dx: SPEED * DX / radius,
+				dy: SPEED * DY / radius,
+			};
+			return bbb;
+		}
+		
 		function getClick(e) {
 			var evt = e || window.event;
 			mouse.x = evt.pageX - ctx.canvas.offsetLeft;
@@ -203,6 +234,47 @@
 		}
 			
 		function update() {
+			curStamp = Date.now();
+			elapsed = curStamp - lastStamp;
+		
+			// subtract that from the amount of time we still need to wait before firing again
+			fireTime -= elapsed;
+		
+			// arctangent tells us the angle between the mouse and the turret base
+			angle = -Math.atan2( enemy2.y-(enemy2.h/2), enemy2.x-(enemy2.w/2) );
+		
+			// figure out where on the turret circle the bullet should emit from
+			emit_dy = - (radius+5) * Math.sin(angle);
+			emit_dx =   (radius+5) * Math.cos(angle);
+		
+			// move the little circle to track with the mouse
+			barrel.x = enemy2.x + emit_dx;
+			barrel.y = enemy2.y + emit_dy;
+		
+			// if they're pressing down the button and we haven't fired recently...
+			if ( firing && fireTime <= 0 )
+			{
+				var bullet = makeBullet(barrel.x, barrel.y, 6, 6, emit_dx, emit_dy, bspeed);
+				bullets.push(bullet);
+				magazineSize--;
+				fireTime = 100;
+				if ( magazineSize <= 0 ) {
+					magazineSize = 20;
+				}
+		
+			}
+		
+			// move all the bullets. Going backward so we do not have trouble if any get removed along the way
+			for ( var i=bullets.length-1; i>=0; i-- ) {
+				bullets[i].x += bullets[i].dx;
+				bullets[i].y += bullets[i].dy;
+				// when a bullet leaves the screen, remove it from the array
+				if ( bullets[i].y < 0 || bullets[i].y > HEIGHT || bullets[i].x < 0 || bullets[i].x > WIDTH )
+					bullets.splice(i, 1); // "splice"? Icky name.
+			}
+			// save a copy of the timestamp for next time through
+			lastStamp = curStamp;
+		
 			var orig = { x: player.x, y: player.y };
 			
 			// move the player
@@ -533,6 +605,10 @@
 					ctx.drawImage(tile, 600, 0 );
 					ctx.drawImage(tile, 750, 0 );
 				}
+				ctx.fillStyle = "#00CC00";
+				for ( var i=0; i<bullets.length; ++i ) {
+					ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
+		}
 			}
 //                                           \\\\\\\\\\\\\\\\Stage 2//////////////////
 			if (stage == 2){
@@ -797,7 +873,6 @@
 							if ( contains(SP4, cup1 || SP4, cup1 ) == true)
 								cup1.health = cup1.health - 1;
 						}
-
 					}
 					if ( SP == 1 ) {
 						if ( ST < 23 ) {
@@ -861,7 +936,7 @@
 					ctx.drawImage(BOSS.img, BOSS.x, BOSS.y );
 					ctx.beginPath();
 					ctx.moveTo(BOSS.x, BOSS.y-3);
-					ctx.lineTo(BOSS.x+(BOSS.health/20), BOSS.y-3);
+					ctx.lineTo(BOSS.x+(BOSS.health/2), BOSS.y-3);
 					ctx.strokeStyle = '#00CCFF';
 					ctx.lineWidth = 3;
 					ctx.stroke();
