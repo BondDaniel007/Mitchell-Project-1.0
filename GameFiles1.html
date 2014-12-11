@@ -25,6 +25,7 @@
 		var stage =1;
 		var oops = 0;
 		var ST = 0;
+		var rad = 0;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
@@ -78,7 +79,7 @@
 		var elapsed = 0;
 		var fireTime = 0;
 		var magazineSize = 20;
-		var radius = 100;
+		var radius = 10;
 		var barrel = {		// where the tip of the gun is. Updates every frame.
 			x: 0,
 			y: 0,
@@ -234,18 +235,29 @@
 		}
 			
 		function update() {
+			/*if ( enemy2.health > 0 )
+				firing = true;
+			if (enemy2.helath < 0 )
+				firing = false;*/
+			firing = true;
 			curStamp = Date.now();
 			elapsed = curStamp - lastStamp;
 		
 			// subtract that from the amount of time we still need to wait before firing again
 			fireTime -= elapsed;
-		
-			// arctangent tells us the angle between the mouse and the turret base
-			angle = -Math.atan2( enemy2.y-(enemy2.h/2), enemy2.x-(enemy2.w/2) );
-		
+			
+			if ( player.x > 550 ){
+				angle = rad;
+				rad++;
+				//fireTime = 100;
+			}
+			if ( player.x < 550 ){
+				//fireTime = 1000;
+				angle = Math.atan2( player.y-player.h, enemy2.x-enemy2.w );
+			}
 			// figure out where on the turret circle the bullet should emit from
-			emit_dy = - (radius+5) * Math.sin(angle);
-			emit_dx =   (radius+5) * Math.cos(angle);
+			emit_dy =  (radius+5) * Math.sin(angle);
+			emit_dx = - (radius+5) * Math.cos(angle);
 		
 			// move the little circle to track with the mouse
 			barrel.x = enemy2.x + emit_dx;
@@ -257,7 +269,7 @@
 				var bullet = makeBullet(barrel.x, barrel.y, 6, 6, emit_dx, emit_dy, bspeed);
 				bullets.push(bullet);
 				magazineSize--;
-				fireTime = 100;
+				fireTime = 1000;
 				if ( magazineSize <= 0 ) {
 					magazineSize = 20;
 				}
@@ -269,7 +281,7 @@
 				bullets[i].x += bullets[i].dx;
 				bullets[i].y += bullets[i].dy;
 				// when a bullet leaves the screen, remove it from the array
-				if ( bullets[i].y < 0 || bullets[i].y > HEIGHT || bullets[i].x < 0 || bullets[i].x > WIDTH )
+				if ( bullets[i].y < 0 || bullets[i].y > 600 || bullets[i].x < 0 || bullets[i].x >800 )
 					bullets.splice(i, 1); // "splice"? Icky name.
 			}
 			// save a copy of the timestamp for next time through
