@@ -49,7 +49,7 @@
 		var SH41 = {};
 		var SH42 = {};
 		
-		var MENU = 0, PLAY = 1, PLOT = 2;
+		var MENU = 0, PLAY = 1, PLOT = 2, gameover = 3, winning = 4;
 		var state = MENU;
 		
 		var left = false, right = false, up = false, down = false;			
@@ -245,9 +245,24 @@
 			else if ( newState === PLOT ) {
 				timerID = setInterval(function() { update(); drawPlot(ctx); }, 1000/60);
 			}
+			else if ( newState === gameover ){
+				timerID = setInterval(function() { drawGameOver(ctx); }, 1000/60);
+			}
+			else if ( newState === winning ){
+				timerID = setInterval(function() { drawWINNING(ctx); }, 1000/60);
+			}
 			state = newState;
 		}
 			
+		function drawGameOver(ctx){
+			if ( gameOverScreen.ready )
+				ctx.drawImage(gameOverScreen, 0, 0 );
+		}
+		function drawWINNING(ctx){
+			if ( victoryScreen.ready )
+				ctx.drawImage(victoryScreen, 0, 0 );
+		}
+		
 		function update() {
 			/*if ( enemy2.health > 0 )
 				firing = true;
@@ -465,6 +480,11 @@
 				}
 			}
 			console.log(player.health);
+			
+			if ( player.health <= 0 )
+				changeState(gameover);
+			if ( BOSS.health <= 0 )
+				changeState(winning);
 		} 
 		
 		function updateMenu() {
@@ -646,7 +666,7 @@
 				for ( var i=0; i<bullets.length; ++i ) {
 					ctx.fillRect(bullets[i].x, bullets[i].y, bullets[i].w, bullets[i].h);
 				
-		}
+				}
 			}
 //                                           \\\\\\\\\\\\\\\\Stage 2//////////////////
 			if (stage == 2){
