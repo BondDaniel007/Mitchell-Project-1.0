@@ -810,10 +810,31 @@
 				if ( BGI3.ready )
 					ctx.drawImage(BGI3, 0, 0 );
 					
+				if ( BOSS.health > 0 ) {
+					if ( BOSS.ready ){
+						ctx.drawImage(BOSS.img, BOSS.x, BOSS.y );
+						ctx.beginPath();
+						ctx.moveTo(BOSS.x, BOSS.y-3);
+						ctx.lineTo(BOSS.x+(BOSS.health/2), BOSS.y-3);
+						ctx.strokeStyle = '#00CCFF';
+						ctx.lineWidth = 3;
+						ctx.stroke();
+					}
+				}
+				
+				if ( player.ready ){
+					ctx.drawImage(player.img, player.x, player.y );
+					ctx.beginPath();
+					ctx.moveTo(player.x, player.y-3);
+					ctx.lineTo(player.x+(player.health*10), player.y-3);
+					ctx.strokeStyle = '#00CCFF';
+					ctx.lineWidth = 3;
+					ctx.stroke();
+				}
+
+					
 				if ( swordOut == true ) {
 					ctx.fillStyle = "#6E4600";
-
-
 					if ( SP == 1 ) {
 						if ( ST < 23 ) {
 							ctx.fillRect(SP1.x, SP1.y, SP1.w, SP1.h);
@@ -847,27 +868,8 @@
 							BOSS.health = BOSS.health - 1;
 					}
 				}
-				if ( player.ready ){
-					ctx.drawImage(player.img, player.x, player.y );
-					ctx.beginPath();
-					ctx.moveTo(player.x, player.y-3);
-					ctx.lineTo(player.x+(player.health*10), player.y-3);
-					ctx.strokeStyle = '#00CCFF';
-					ctx.lineWidth = 3;
-					ctx.stroke();
-				}
-
-				if ( BOSS.health > 0 ) {
-					if ( BOSS.ready ){
-						ctx.drawImage(BOSS.img, BOSS.x, BOSS.y );
-						ctx.beginPath();
-						ctx.moveTo(BOSS.x, BOSS.y-3);
-						ctx.lineTo(BOSS.x+(BOSS.health/2), BOSS.y-3);
-						ctx.strokeStyle = '#00CCFF';
-						ctx.lineWidth = 3;
-						ctx.stroke();
-					}
-				}
+				
+				
 			}
 		}
 
