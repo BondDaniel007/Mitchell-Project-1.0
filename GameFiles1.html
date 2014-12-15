@@ -6,6 +6,7 @@
 	<style type='text/css'>
 		canvas { border: 1px solid black; }
 	</style>
+	<script type="text/javascript" src="howler.min.js"></script>
 </head>
 <body>
 	<canvas id='canvas' width='800' height='600'></canvas>
@@ -26,6 +27,7 @@
 		var oops = 0;
 		var ST = 0;
 		var rad = 0;
+		var somwething = 1;
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
@@ -249,7 +251,7 @@
 				timerID = setInterval(function() { drawGameOver(ctx); }, 1000/60);
 			}
 			else if ( newState === winning ){
-				timerID = setInterval(function() { drawWINNING(ctx); }, 1000/60);
+				timerID = setInterval(function() { drawWINNING(ctx); });
 			}
 			state = newState;
 		}
@@ -261,6 +263,12 @@
 		function drawWINNING(ctx){
 			if ( victoryScreen.ready )
 				ctx.drawImage(victoryScreen, 0, 0 );
+			if ( somwething == 1 ){
+				var sound = new Howl({
+					urls: ['Reading Rainbow 1.mp3']
+				}).play();
+				somwething --;
+			}
 		}
 		
 		function update() {
@@ -858,15 +866,14 @@
 					}
 				}
 				
-				if ( player.ready ){
+				if ( player.ready )
 					ctx.drawImage(player.img, player.x, player.y );
 					ctx.beginPath();
 					ctx.moveTo(player.x, player.y-3);
-					ctx.lineTo(player.x+(player.health*10), player.y-3);
+					ctx.lineTo(player.x+(player.health/2), player.y-3);
 					ctx.strokeStyle = '#00CCFF';
 					ctx.lineWidth = 3;
 					ctx.stroke();
-				}
 
 					
 				if ( swordOut == true ) {
