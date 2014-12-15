@@ -259,6 +259,12 @@
 		function drawGameOver(ctx){
 			if ( gameOverScreen.ready )
 				ctx.drawImage(gameOverScreen, 0, 0 );
+			if ( somwething == 1 ){
+				var sound = new Howl({
+					urls: ['nooo.mp3']
+				}).play();
+				somwething --;
+			}
 		}
 		function drawWINNING(ctx){
 			if ( victoryScreen.ready )
