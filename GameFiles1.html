@@ -365,15 +365,31 @@
 				player.x = orig.x;
 				player.y = orig.y; }
 			
-			if ( stage == 1 )
-				if ( collide(player, enemy1) == true || collide(player, enemy2) == true )
-					player.health = player.health - 1;
-			if (stage == 2 )
-				if ( collide(player, cup1) == true || collide(player, cup2) == true || collide(player, cup3) == true )
-					player.health = player.health - 1;
-			if (stage == 3 )
+			if ( stage == 1 ) {
+				if ( enemy1.health > 0 )
+					if ( collide(player, enemy1) == true )
+						player.health = player.health - 1;
+				if ( enemy2.health > 0 )
+					if ( collide(player, enemy2) == true )
+						player.health = player.health - 1;
+			}
+					
+			if ( stage == 2 ) {
+				if ( cup1.health > 0 )
+					if ( collide(player, cup1) == true )
+						player.health = player.health - 1;
+				if ( cup2.health > 0 )
+					if ( collide(player, cup2) == true )
+						player.health = player.health - 1;
+				if ( cup3.health > 0 )
+					if ( collide(player, cup3) == true )
+						player.health = player.health - 1;
+			}
+					
+			if ( stage == 3 ) 
 				if (collide(player, BOSS) == true)
 					player.health = player.health - 1;
+					
 			
 			if ( player.x < 0 )
 				player.x = 0;
