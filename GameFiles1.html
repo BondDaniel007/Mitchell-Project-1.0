@@ -31,7 +31,7 @@
 		
 		var player = { x: 5, y: 5, w: 50, h: 50, dx: 5, dy: 5, health: 100 };
 		var enemy1 = { x: 200, y: 20, w: 35, h: 35, dx: 1, dy: 0, health: 2 };
-		var enemy2 = { x: 650, y: 150, w: 100, h: 100, health: 100 };
+		var enemy2 = { x: 625, y: 150, w: 150, h: 150, health: 100 };
 		var cup1 = { x: 500, y: 300, w: 32, h: 44, dx: 1, dy: 0, health: 64};
 		var cup2 = { x: 500, y: 300, w: 32, h: 44, dx: -1, dy: 0, health: 64};
 		var cup3 = { x: 500, y: 300, w: 32, h: 44, dx: 0, dy: -1, health: 64};
@@ -580,7 +580,7 @@
 						ctx.drawImage(enemy2.img, enemy2.x, enemy2.y );
 						ctx.beginPath();
 						ctx.moveTo(enemy2.x, enemy2.y-3);
-						ctx.lineTo(enemy2.x+(enemy2.health), enemy2.y-3);
+						ctx.lineTo(enemy2.x+(enemy2.health*1.5), enemy2.y-3);
 						ctx.strokeStyle = '#00CCFF';
 						ctx.lineWidth = 3;
 						ctx.stroke();
